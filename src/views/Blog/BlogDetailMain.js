@@ -1,26 +1,18 @@
 import { Avatar } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { AvatarGroup } from '@material-ui/lab';
-import GridContainer from 'components/Grid/GridContainer';
-import GridItem from 'components/Grid/GridItem';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import 'assets/scss/markdown.scss';
 
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
     ...theme.typography.body2,
     padding: theme.spacing(3, 0),
-  },
-  title: {
-    color: "#3C4858",
-    textDecoration: "none",
-    fontWeight: "700",
-    fontFamily: `"Roboto", "Times New Roman", NanumGothic, serif`
   }
 }));
 
@@ -180,39 +172,41 @@ Please review the [Contribution to Spark guide](https://spark.apache.org/contrib
 for information on how to get started contributing to the project.
       `
 
-export default function BlogDetailPageMain(props) {
+export default function BlogDetailMain(props) {
   const classes = useStyles();
   const {authors, post, title } = props;
 
   return (
     <Grid item xs={12}>
-      <Typography variant="h3" gutterBottom align="center" className={classes.title}>
+      <Typography variant="h1" gutterBottom align="center" className={classes.title}>
         {title}
       </Typography>
-      <GridContainer>
-        <GridItem xs={3}>
-        <AvatarGroup max={3} style={{float:"right"}}>
-          {authors.map((author) => 
-            <Avatar key={author.name} alt={author.name} src={author.avatar} /> 
-          )}
-        </AvatarGroup>
-      </GridItem>
-      <GridItem xs={9}>
-      <Typography variant="body2" gutterBottom >
-        This is Author profile
-      </Typography>
-      <Typography variant="body2" gutterBottom >
-        2020.03.11
-      </Typography>
-        </GridItem>
-      </GridContainer>
-      <Divider style={{margin:"30px 0"}}/>
-      <ReactMarkdown source={sampleMarkDown} />
+      
+        <Grid container>
+          <Grid item xs={3}>
+          <AvatarGroup max={3} style={{float:"right"}}>
+            {authors.map((author) => 
+              <Avatar key={author.name} alt={author.name} src={author.avatar} /> 
+            )}
+          </AvatarGroup>
+        </Grid>
+        <Grid item xs={9}>
+        <Typography variant="body2" gutterBottom >
+          This is Author profile
+        </Typography>
+        <Typography variant="body2" gutterBottom >
+          2020.03.11
+        </Typography>
+          </Grid>
+        </Grid>
+        <div className={"markdown-body"}>
+          <ReactMarkdown source={sampleMarkDown} />
+        </div>
     </Grid>
   );
 }
 
-BlogDetailPageMain.propTypes = {
+BlogDetailMain.propTypes = {
   posts: PropTypes.array,
   title: PropTypes.string,
 };

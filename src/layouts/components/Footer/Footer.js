@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import { Typography, Link, Grid, Divider } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { Typography, Link, Grid, Divider, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(0)
+    padding: theme.spacing(0),
+    backgroundColor:"#f4f6f8",
+    position:"relative",
+    zIndex:theme.zIndex.appBar
   },
   logoContainer: {
     paddingLeft: 3,
@@ -32,19 +35,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Footer = props => {
-  const { className, ...rest } = props;
+  const { className, sidebar, ...rest } = props;
 
   const classes = useStyles();
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+    defaultMatches: true
+  });
 
   return (
     <div
       {...rest}
       className={clsx(classes.root, className)}
+      style={{marginLeft: sidebar && isDesktop ? 240: 0}}
     >
-      
       <Grid container>
         <Grid item xs={12}>
-          <Divider variant="middle" style={{height:5}}/>
+          <Divider style={{height:5}}/>
         </Grid>
         <Grid item xs={6}>
           <div className={classes.logoContainer}>

@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
 import { Topbar } from './components';
-import { Footer, Menubar} from '../components';
+import { Footer } from '../components';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: 84,
+    paddingTop: 105,
     height: '100%'
   },
   content: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Main = props => {
-  const { children } = props;
+  const { children, sidebar } = props;
 
   const classes = useStyles();
 
@@ -30,7 +30,7 @@ const Main = props => {
       <Topbar currentLocation={children.props.location.pathname}/>
       <main className={classes.content}>
         {children}
-        <Footer />
+        <Footer sidebar={sidebar} />
       </main>
     </div>
   );

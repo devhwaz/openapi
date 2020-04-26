@@ -141,9 +141,8 @@ const rows = [
 ];
 
 const tabPanelStyle = {
-  backgroundColor:"#999",
+  backgroundColor:"#EEE",
   borderRadius:10,
-  color:"white",
   fontSize:20
 }
 

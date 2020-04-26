@@ -2,10 +2,16 @@ import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 
 import { RouteWithLayout } from './components';
-import { Main as MainLayout, MainWithSide as MainWithSideLayout, Minimal as MinimalLayout } from './layouts';
+import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 
 import {
   Home as HomeView,
+  Api as ApiView,
+  Api as AnalyticsView,
+  Api as AboutView,
+  Api as InfoView,
+  Blog as BlogView,
+  BlogDetail as BlogDetailView,
   Dashboard as DashboardView,
   ProductList as ProductListView,
   UserList as UserListView,
@@ -32,6 +38,44 @@ const Routes = () => {
         layout={MainLayout}
         path="/home"
       />
+      <RouteWithLayout
+        component={ApiView}
+        exact
+        sidebar
+        layout={MainLayout}
+        path="/api"
+      />
+      <RouteWithLayout
+        component={BlogView}
+        exact
+        layout={MainLayout}
+        path="/blog"
+      />
+      <RouteWithLayout
+        component={BlogDetailView}
+        exact
+        layout={MainLayout}
+        path="/blog/:id"
+      />
+      <RouteWithLayout
+        component={AnalyticsView}
+        exact
+        layout={MainLayout}
+        path="/analytics"
+      />
+      <RouteWithLayout
+        component={AboutView}
+        exact
+        layout={MainLayout}
+        path="/about"
+      />
+      <RouteWithLayout
+        component={InfoView}
+        exact
+        layout={MainLayout}
+        path="/info"
+      />
+      {/* 템플릿 디폴트 라우터 */}
       <RouteWithLayout
         component={DashboardView}
         exact

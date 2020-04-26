@@ -1,4 +1,5 @@
 import { colors } from '@material-ui/core';
+import palette from '../palette';
 
 export default {
   contained: {
@@ -7,6 +8,9 @@ export default {
     backgroundColor: '#FFFFFF'
   },
   textSecondary: {
-    color:colors.grey
+    color:colors.grey,
+    '&:hover':{
+      backgroundColor:palette.koscomLight
+    }
   }
 };

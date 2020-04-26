@@ -1,27 +1,25 @@
-import { Divider } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import team1 from "assets/img/faces/avatar.jpg";
-import team2 from "assets/img/faces/christian.jpg";
-import team3 from "assets/img/faces/kendall.jpg";
-import styles from "assets/jss/material-kit-react/views/blogPage.js";
-import classNames from "classnames";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
 import React, { useEffect } from "react";
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
+import BlogDetailMain from './BlogDetailMain';
 import FeaturedPost from './FeaturedPost';
-import BlogDetailPageMain from './BlogDetailPageMain';
 
-
-
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(4)
+  },
+  mainGrid: {
+    marginBottom: theme.spacing(4)
+  },
+  recommendGrid: {
+    [theme.breakpoints.up("lg")]: {
+      padding: "0 200px"
+    }
+  }
+}));
 
 const mainFeaturedPost = {
   title: 'Title of a longer featured blog post',
@@ -51,12 +49,10 @@ const featuredPosts = [
   },
 ];
 
-const posts = [post1, post2, post3];
-
 const authors = [
-  {name: "Remy Sharp", avatar:team1},
-  {name: "Travis Howard", avatar:team2},
-  {name: "Cindy Baker", avatar:team3}
+  {name: "Remy Sharp", avatar:"/images/avatars/avatar_1.png"},
+  {name: "Travis Howard", avatar:"/images/avatars/avatar_2.png"},
+  {name: "Cindy Baker", avatar:"/images/avatars/avatar_3.png"}
 ];
 
 const sidebar = {
@@ -83,7 +79,7 @@ const sidebar = {
   ],
 };
 
-export default function BlogDetailPage(props) {
+export default function BlogDetail(props) {
   const classes = useStyles();
 
   // URL 쿼리 파라미터
@@ -94,28 +90,15 @@ export default function BlogDetailPage(props) {
   }, [])
 
   return (
-    <div>
-      <Header
-        color="gray"
-        brand=""
-        rightLinks={<HeaderLinks />}
-        fixed
-        {...rest}
-      />
-      <div className={classNames(classes.main, classes.paper)}>
-        <div className={classes.container}>
-          <GridContainer spacing={5} className={classes.mainGrid}>
-            <BlogDetailPageMain title={mainFeaturedPost.title} post={posts[0]} authors={authors}/>
-          </GridContainer>
-          <Divider style={{marginBottom:20}}/>
-          <GridContainer spacing={5}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </GridContainer>
-        </div>
-      </div>
-      <Footer />
+    <div className={classes.root}>
+      <Grid container spacing={5} className={classes.mainGrid}>
+        <BlogDetailMain title={mainFeaturedPost.title} post={""/* TODO: Post 데이터 필요 */} authors={authors}/>
+      </Grid>
+      <Grid container spacing={5} className={classes.recommendGrid}>
+        {featuredPosts.map((post) => (
+          <FeaturedPost key={post.title} post={post} />
+        ))}
+      </Grid>
     </div>
   );
 }

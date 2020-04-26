@@ -8,8 +8,8 @@ export default {
     
   },
   head: {
-    color: palette.white,
-    fontWeight:500
+    color: palette.black,
+    fontWeight:1000
   },
   sizeSmall: {
     paddingTop:3,

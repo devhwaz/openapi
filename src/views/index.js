@@ -1,4 +1,6 @@
 export { default as Account } from './Account';
+export { default as Api } from './Api';
+export { Blog, BlogDetail } from './Blog';
 export { default as Dashboard } from './Dashboard';
 export { default as Icons } from './Icons';
 export { default as Home } from './Home';
