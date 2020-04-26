@@ -7,9 +7,17 @@ export default {
     borderBottom: `1px solid ${palette.divider}`,
     
   },
+  head: {
+    color: palette.white,
+    fontWeight:500
+  },
   sizeSmall: {
-    padding:'1px 3px'
-    
-
+    paddingTop:3,
+    paddingBottom:3,
+    borderRight:`1px solid ${palette.divider}`,
+    '&:last-child':{
+      borderRight:0
+    }
   }
+
 };
