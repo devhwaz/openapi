@@ -25,12 +25,11 @@ const Api = () => {
       <Sidebar>
         <SidebarNavigation callback={navCallback} />
       </Sidebar>
-      <ApiDetail />
-      <ApiDetail />
-      <ApiDetail />
-      <ApiDetail />
-      <ApiDetail />
-      <ApiDetail />
+      <ApiDetail title="분기보고서"/>
+      <ApiDetail title="요청인자" />
+      <ApiDetail title="응답결과" />
+      <ApiDetail title="테스트" />
+      <ApiDetail title="메세지코드" />
     </div>
   );
 };

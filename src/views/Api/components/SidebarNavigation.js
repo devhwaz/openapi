@@ -108,51 +108,23 @@ export default function SidebarNavigation(props) {
         <ListItemText primary="재무 서비스" />
       </ListItem>
 
-      <ListItem button onClick={() => callback("fundamental")}>
+      <ListItem button onClick={() => callback("buy")}>
         <ListItemIcon>
           <LocalAtmIcon />
         </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
+        <ListItemText primary="일임매매" />
+      </ListItem>
+      <ListItem button onClick={() => callback("analysis")}>
         <ListItemIcon>
           <LocalAtmIcon />
         </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
+        <ListItemText primary="분석 서비스" />
+      </ListItem>
+      <ListItem button onClick={() => callback("search")}>
         <ListItemIcon>
           <LocalAtmIcon />
         </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
-      </ListItem><ListItem button onClick={() => callback("fundamental")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
+        <ListItemText primary="검색 서비스" />
       </ListItem>
     </List>
   );

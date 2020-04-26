@@ -34,12 +34,13 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function ApiDetail() {
+export default function ApiDetail(props) {
+  const {title, subtitle, ...rest} = props
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-    <Typography className={classes.title} variant="h3" gutterBottom>■ 증자현황</Typography>
+    <Typography className={classes.title} variant="h3" gutterBottom>■ {title}</Typography>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
