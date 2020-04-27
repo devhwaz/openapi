@@ -49,7 +49,7 @@ const Menubar = props => {
       </Tooltip>
       <Tooltip title="데이터 분석플랫폼">
         <Button href="/analytics" variant={setContained("/analytics")} className={classes.menuButton} color="secondary" disableElevation>
-          <AssessmentOutlinedIcon className={classes.menuIcon} /> 분석플랫폼
+          <AssessmentOutlinedIcon className={classes.menuIcon} /> Analytics
         </Button>
       </Tooltip>
       <Tooltip title="데이터분석 테크 블로그">
@@ -57,14 +57,14 @@ const Menubar = props => {
           <MenuBook className={classes.menuIcon} /> Blog
         </Button>
       </Tooltip>
-      <Tooltip title="코스콤 마켓플레이스 소개">
-        <Button href="/about" variant={setContained("/about")} className={classes.menuButton} color="secondary" disableElevation>
-          <People className={classes.menuIcon} /> 소개
+      <Tooltip title="코스콤 마켓플레이스 커뮤니티">
+        <Button href="/community" variant={setContained("/community")} className={classes.menuButton} color="secondary" disableElevation disabled>
+          <People className={classes.menuIcon} /> Community
         </Button>
       </Tooltip>
-      <Tooltip title="FAQ, 문의사항">
+      <Tooltip title="소개, FAQ, 문의사항">
         <Button href="/info" variant={setContained("/info")} className={classes.menuButton} color="secondary" disableElevation>
-          <Info className={classes.menuIcon} /> 이용안내
+          <Info className={classes.menuIcon} /> About
         </Button>
       </Tooltip>
     </div>

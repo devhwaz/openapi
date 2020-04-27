@@ -67,7 +67,7 @@ const Routes = () => {
         component={AboutView}
         exact
         layout={MainLayout}
-        path="/about"
+        path="/community"
       />
       <RouteWithLayout
         component={InfoView}
