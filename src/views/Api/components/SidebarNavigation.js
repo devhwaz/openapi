@@ -101,7 +101,7 @@ export default function SidebarNavigation(props) {
         </List>
       </Collapse>
       
-      <ListItem button onClick={() => callback("fundamental")}>
+      {/* <ListItem button onClick={() => callback("fundamental")}>
         <ListItemIcon>
           <LocalAtmIcon />
         </ListItemIcon>
@@ -125,7 +125,7 @@ export default function SidebarNavigation(props) {
           <LocalAtmIcon />
         </ListItemIcon>
         <ListItemText primary="검색 서비스" />
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 }
