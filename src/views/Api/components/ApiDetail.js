@@ -7,18 +7,24 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
+import { Typography, Divider } from '@material-ui/core';
 import palette from 'theme/palette';
-
+import Highlight from 'react-highlight';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      padding: theme.spacing(4)
+      padding: theme.spacing(4),
+      [theme.breakpoints.down("md")]:{
+        padding:0
+      }
     },
-    title: {
-        marginBottom:20,
-        paddingBottom:5,
-        borderBottom:"3px solid"+palette.koscomLight
+    divider: {
+        marginBottom:10,
+        height:3,
+        backgroundColor:palette.koscomLight
+    },
+    table: {
+      
     }
   }));
 
@@ -35,38 +41,45 @@ const rows = [
 ];
 
 export default function ApiDetail(props) {
-  const {title, subtitle, ...rest} = props
+  const {data, ...rest} = props
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-    <Typography className={classes.title} variant="h3" gutterBottom>■ {title}</Typography>
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+      <Typography variant="h3" gutterBottom>■ {data.title}</Typography>
+      <Typography variant="subtitle2" gutterBottom>{data.description}</Typography>
+      <Divider className={classes.divider} />
+      <Typography variant="h4" gutterBottom>■ 기본정보</Typography>
+      <Highlight className='bash'>
+        {"code snippet to be highlighted"}
+      </Highlight>
+      <Typography variant="h4" gutterBottom>■ 요청인자</Typography>
+      <TableContainer component={Paper}>
+        <Table size="small" className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">키</TableCell>
+              <TableCell align="center">명칭</TableCell>
+              <TableCell align="center">타입</TableCell>
+              <TableCell align="center">설명</TableCell>
+              <TableCell align="center">필수</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.carbs}</TableCell>
+                <TableCell align="right">{row.protein}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
