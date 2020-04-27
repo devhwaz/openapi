@@ -1,18 +1,15 @@
-import { Grid } from '@material-ui/core';
+import { Avatar, Grid, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import React, { useEffect } from "react";
-import BlogDetailMain from './BlogDetailMain';
+import { AvatarGroup } from '@material-ui/lab';
+import React, { useEffect, useState } from "react";
+import BlogDetailMarkdown from './BlogDetailMarkdown';
 import FeaturedPost from './FeaturedPost';
+import posts from "./sample";
+import BlogDetailHtml from './BlogDetailHtml';
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
-  },
-  mainGrid: {
-    marginBottom: theme.spacing(4)
   },
   recommendGrid: {
     [theme.breakpoints.up("lg")]: {
@@ -21,78 +18,52 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
-  imgText: 'main image description',
-  linkText: 'Continue reading…',
-};
-
-const featuredPosts = [
-  {
-    title: 'Featured post',
-    date: 'Nov 12',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-  {
-    title: 'Post title',
-    date: 'Nov 11',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-];
-
-const authors = [
-  {name: "Remy Sharp", avatar:"/images/avatars/avatar_1.png"},
-  {name: "Travis Howard", avatar:"/images/avatars/avatar_2.png"},
-  {name: "Cindy Baker", avatar:"/images/avatars/avatar_3.png"}
-];
-
-const sidebar = {
-  title: 'About',
-  description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
-  archives: [
-    { title: 'March 2020', url: '#' },
-    { title: 'February 2020', url: '#' },
-    { title: 'January 2020', url: '#' },
-    { title: 'November 1999', url: '#' },
-    { title: 'October 1999', url: '#' },
-    { title: 'September 1999', url: '#' },
-    { title: 'August 1999', url: '#' },
-    { title: 'July 1999', url: '#' },
-    { title: 'June 1999', url: '#' },
-    { title: 'May 1999', url: '#' },
-    { title: 'April 1999', url: '#' },
-  ],
-  social: [
-    { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
-  ],
-};
-
 export default function BlogDetail(props) {
   const classes = useStyles();
 
   // URL 쿼리 파라미터
   const { id, ...rest } = props.match.params;
 
+  const [post, setPost] = useState({
+    authors:[]
+  });
+
+  const [featuredPosts, setFeaturedPosts] = useState([]);
+
   useEffect(() => {
-    //console.log(id);
+    // id 값으로 Blog 컨텐츠 fetch 및 Blog 목록조회 필요
+    setPost(posts[0]);
+    setFeaturedPosts(posts);
   }, [])
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={5} className={classes.mainGrid}>
-        <BlogDetailMain title={mainFeaturedPost.title} post={""/* TODO: Post 데이터 필요 */} authors={authors}/>
+      <Grid container justify="center">
+        <Grid item xs={12}>
+          <Typography variant="h1" gutterBottom align="center" className={classes.title}>
+            {post.title}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <AvatarGroup max={3} style={{paddingLeft:5}}>
+            {post.authors.map((author) => 
+              <Avatar key={author.name} alt={author.name} src={author.avatar} /> 
+            )}
+          </AvatarGroup>
+          <Typography variant="subtitle1" gutterBottom >
+            {post.authors.map((author) => author.name).join(',')}
+          </Typography>
+          <Typography variant="body2" gutterBottom >
+            {post.date}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}><Divider variant="middle" style={{marginTop:10}}/></Grid>
+        <Grid item xs={12}>
+          <BlogDetailHtml source={post.source}/>
+        </Grid>
+        <Grid item xs={12}>
+          <BlogDetailMarkdown source={""/* TODO: Markdown Fetch 후 결과 데이터 필요 */}/>
+        </Grid>
       </Grid>
       <Grid container spacing={5} className={classes.recommendGrid}>
         {featuredPosts.map((post) => (

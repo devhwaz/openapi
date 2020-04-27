@@ -8,6 +8,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles({
   card: {
@@ -26,7 +27,7 @@ export default function FeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={12} md={4}>
       {/* TODO Post id 값으로 바꿀것 */}
       <CardActionArea component="a" href={"/blog/"+post.id}>
         <Card className={classes.card} raised={true}>
@@ -42,7 +43,9 @@ export default function FeaturedPost(props) {
                 {post.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                Continue reading...
+              <Link variant="subtitle1" href={"/blog/"+post.id}>
+                → 읽어보기
+              </Link>
               </Typography>
             </CardContent>
           </div>

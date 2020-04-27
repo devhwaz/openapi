@@ -53,8 +53,8 @@ export default function MainFeaturedPost(props) {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="/blog/1">
-              {post.linkText}
+            <Link variant="subtitle1" href={"/blog/"+post.id}>
+              → 읽어보기
             </Link>
           </div>
         </Grid>

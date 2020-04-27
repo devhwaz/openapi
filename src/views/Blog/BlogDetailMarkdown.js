@@ -1,19 +1,12 @@
-import { Avatar } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { AvatarGroup } from '@material-ui/lab';
+import 'assets/scss/markdown.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import 'assets/scss/markdown.scss';
 
 
 const useStyles = makeStyles((theme) => ({
-  markdown: {
-    ...theme.typography.body2,
-    padding: theme.spacing(3, 0),
-  }
+  
 }));
 
 const sampleMarkDown = `# Sample blog post
@@ -172,41 +165,20 @@ Please review the [Contribution to Spark guide](https://spark.apache.org/contrib
 for information on how to get started contributing to the project.
       `
 
-export default function BlogDetailMain(props) {
+export default function BlogDetailMarkdown(props) {
+
+  const {source, ...rest} = props;
+
   const classes = useStyles();
-  const {authors, post, title } = props;
 
   return (
-    <Grid item xs={12}>
-      <Typography variant="h1" gutterBottom align="center" className={classes.title}>
-        {title}
-      </Typography>
-      
-        <Grid container>
-          <Grid item xs={3}>
-          <AvatarGroup max={3} style={{float:"right"}}>
-            {authors.map((author) => 
-              <Avatar key={author.name} alt={author.name} src={author.avatar} /> 
-            )}
-          </AvatarGroup>
-        </Grid>
-        <Grid item xs={9}>
-        <Typography variant="body2" gutterBottom >
-          This is Author profile
-        </Typography>
-        <Typography variant="body2" gutterBottom >
-          2020.03.11
-        </Typography>
-          </Grid>
-        </Grid>
-        <div className={"markdown-body"}>
-          <ReactMarkdown source={sampleMarkDown} />
-        </div>
-    </Grid>
+    <div className={"markdown-body"}>
+      <ReactMarkdown source={sampleMarkDown} />
+    </div>
   );
 }
 
-BlogDetailMain.propTypes = {
+BlogDetailMarkdown.propTypes = {
   posts: PropTypes.array,
   title: PropTypes.string,
 };

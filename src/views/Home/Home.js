@@ -181,12 +181,6 @@ const Home = () => {
           <Grid item xs={12}>
             <p className={classes.carouselText}>{props.item.description}</p>
           </Grid>
-          <br />
-          <Grid item xs={12}>
-            <Button className={classes.carouselButton}>
-              자세히 보기
-            </Button>
-          </Grid>
         </Grid>
       </Paper>
     )
