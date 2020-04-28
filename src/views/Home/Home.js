@@ -1,7 +1,6 @@
 import { Button, Grid, Paper, Typography, Divider, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
 import FeaturedPost from 'views/Blog/FeaturedPost';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,6 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import { TabPanel } from 'components';
 import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
+import featuredPosts from '../Blog/sample';
+import { CarouselView } from './components';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,28 +24,6 @@ const useStyles = makeStyles(theme => ({
   },
   carousel: {
     top: -3
-  },
-  carouselPaper: {
-    boxShadow: "none",
-    borderRadius: 0,
-    height: 320,
-  },
-  carouselTitle: {
-    fontSize: 45,
-    color: "white"
-  },
-  carouselText: {
-    fontSize: 20,
-    color: "white",
-    textAlign: "center"
-  },
-  carouselButton:
-  {
-    marginTop: 20,
-    color: "white",
-    fontSize: 20,
-    border: "5px solid white",
-    textTransform: "capitalize"
   },
   blogs: {
     [theme.breakpoints.up("lg")]: {
@@ -87,49 +67,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-const items = [
-  {
-    index: 1,
-    name: "마켓플레이스",
-    description: "자본시장에 특화된 다양한 데이터",
-    img: "/images/bg/bg2.jpg"
-  },
-  {
-    index: 2,
-    name: "마켓플레이스",
-    description: "인공지능으로 분석된 투자분석 데이터",
-    img: "/images/bg/bg7.jpg"
-  },
-  {
-    index: 3,
-    name: "마켓플레이스",
-    description: "제공자와 수요자간 데이터 유통",
-    img: "/images/bg/bg9.jpg"
-  }
-]
-
-const featuredPosts = [
-  {
-    id: 1,
-    title: 'Blog Title',
-    date: 'Nov 12',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text'
-  },
-  {
-    id: 2,
-    title: 'Blog Title',
-    date: 'Nov 12',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text'
-  }
-];
-
 function createData(name, date) {
   return { name, date };
 }
@@ -155,53 +92,9 @@ const Home = () => {
     setValue(newValue);
   };
 
-  function Project(props) {
-    return (
-      <Paper
-        className={classes.carouselPaper}
-        style={{
-          backgroundImage: `url(${props.item.img})`,
-          borderRadius: 0,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          paddingTop: 70
-        }}
-      >
-
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          justify="center"
-        >
-          <Grid item xs={12}>
-            <h1 className={classes.carouselTitle}>{props.item.name}</h1>
-          </Grid>
-          <Grid item xs={12}>
-            <p className={classes.carouselText}>{props.item.description}</p>
-          </Grid>
-        </Grid>
-      </Paper>
-    )
-  }
-
   return (
     <div className={classes.root}>
-      <Carousel
-        className={classes.carousel}
-        autoPlay={true}
-        timer={500}
-        animation="fade"
-        indicators={true}
-        timeout={500}
-      >
-        {
-          items.map((item, index) => {
-            return <Project item={item} key={index} />
-          })
-        }
-      </Carousel>
+      <CarouselView />
       <div className={classes.content}>
         <Grid container className={classes.blogs} spacing={4} justify="center" alignItems="center">
           {featuredPosts.map((post) => (

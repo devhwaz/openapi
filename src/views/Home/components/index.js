@@ -1,1 +1,1 @@
-export { default as BlogCard } from './BlogCard';
+export { CarouselView } from './CarouselView';
