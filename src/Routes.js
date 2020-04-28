@@ -8,8 +8,8 @@ import {
   Home as HomeView,
   Api as ApiView,
   Analytics as AnalyticsView,
-  Api as AboutView,
-  Api as InfoView,
+  About as CommunityView,
+  About as InfoView,
   Blog as BlogView,
   BlogDetail as BlogDetailView,
   Dashboard as DashboardView,
@@ -64,7 +64,7 @@ const Routes = () => {
         path="/analytics"
       />
       <RouteWithLayout
-        component={AboutView}
+        component={CommunityView}
         exact
         layout={MainLayout}
         path="/community"
