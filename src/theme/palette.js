@@ -12,6 +12,7 @@ export default {
   koscomDark,
   koscomMain,
   koscomLight,
+  customblue: colors.blue[100],
   primary: {
     contrastText: white,
     dark: colors.indigo[900],

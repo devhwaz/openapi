@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Chip from '@material-ui/core/Chip';
 import { Typography, Divider } from '@material-ui/core';
 import palette from 'theme/palette';
 import Highlight from 'react-highlight';
@@ -35,6 +36,9 @@ const useStyles = makeStyles(theme => ({
     },
     code: {
       borderRadius:10
+    },
+    chip: {
+      backgroundColor:theme.palette.customblue
     }
   }));
 
@@ -51,7 +55,11 @@ export default function ApiDetail(props) {
       </div>
       <div className={classes.section}>
         <Typography variant="h4" gutterBottom>■ 기본정보</Typography>
-        
+        <div style={{display:"flex", alignItems:"center"}}>
+        <Chip label="Basic" className={classes.chip} label={data.request.method}/>
+        &nbsp;
+        <Typography variant="h5">{data.request.urlFormat} </Typography>
+        </div>
       </div>
       <div className={classes.section}>
         <Typography variant="h4" gutterBottom>■ 요청인자</Typography>
@@ -67,7 +75,7 @@ export default function ApiDetail(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.request.queryParameters.map((row) => (
+              {data.request.pathParameters.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell align="left">{row.name}</TableCell>
                   <TableCell align="left">{row.title}</TableCell>
