@@ -1,4 +1,5 @@
 export { default as Account } from './Account';
+export { default as Analytics } from './Analytics';
 export { default as Api } from './Api';
 export { Blog, BlogDetail } from './Blog';
 export { default as Dashboard } from './Dashboard';

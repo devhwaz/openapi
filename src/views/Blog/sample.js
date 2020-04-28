@@ -10,7 +10,7 @@ const posts = [
     title: 'HTML 파일에 기반한 블로그 샘플',
     date: 'April 27',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'HTML페이지로 제작된 블로그 파일을 로드합니다.',
     image: 'https://source.unsplash.com/random',
     imageText: 'Image Text',
     authors: authors,
@@ -21,12 +21,23 @@ const posts = [
     title: 'Markdown 파일에 기반한 블로그 샘플',
     date: 'April 29',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'Markdown 파일로 제작된 블로그 파일을 로드합니다.',
     image: 'https://source.unsplash.com/random',
     imageText: 'Image Text',
     authors: authors,
     source: '/notebook_files/수정요함.md'
   },
+  {
+    id:3,
+    title: '기타 블로그 샘플',
+    date: 'April 30',
+    description:
+      '기타 형태의 블로그',
+    image: 'https://source.unsplash.com/random',
+    imageText: 'Image Text',
+    authors: authors,
+    source: '/notebook_files/수정요함.md'
+  }
 ];
 
 export default posts;

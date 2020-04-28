@@ -7,7 +7,7 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
 import {
   Home as HomeView,
   Api as ApiView,
-  Api as AnalyticsView,
+  Analytics as AnalyticsView,
   Api as AboutView,
   Api as InfoView,
   Blog as BlogView,

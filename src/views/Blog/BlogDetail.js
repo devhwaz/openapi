@@ -12,8 +12,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4)
   },
   recommendGrid: {
+    marginTop:theme.spacing(6),
     [theme.breakpoints.up("lg")]: {
-      padding: "0 200px"
+      
     }
   }
 }));
@@ -67,7 +68,9 @@ export default function BlogDetail(props) {
       </Grid>
       <Grid container spacing={5} className={classes.recommendGrid}>
         {featuredPosts.map((post) => (
-          <FeaturedPost key={post.title} post={post} />
+          <Grid item xs={12} md={4}>
+            <FeaturedPost key={post.title} post={post} />
+          </Grid>
         ))}
       </Grid>
     </div>

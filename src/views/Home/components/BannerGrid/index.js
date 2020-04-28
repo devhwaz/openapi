@@ -1,0 +1,1 @@
+export { default as BannerGrid } from './BannerGrid';

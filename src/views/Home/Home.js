@@ -12,23 +12,36 @@ import { TabPanel } from 'components';
 import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
 import featuredPosts from '../Blog/sample';
-import { CarouselView } from './components';
+import { CarouselView, BannerGrid } from './components';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
-
+    overflowX:"hidden"
   },
   content: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(4)
+  },
+  bannerContents: {
+    [theme.breakpoints.up("lg")]:{
+      padding: theme.spacing(2,20)
+    }
   },
   carousel: {
     top: -3
   },
   blogs: {
+    backgroundColor:"#EEE",
     [theme.breakpoints.up("lg")]: {
-      padding: "0 200px"
+      
     }
+  },
+  blogTitle: {
+    marginTop:0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height:150
   },
   notice: {
     [theme.breakpoints.up("lg")]: {
@@ -64,6 +77,9 @@ const useStyles = makeStyles(theme => ({
   tab: {
     fontWeight:1000,
     minWidth:120
+  },
+  links: {
+    
   }
 }));
 
@@ -95,16 +111,16 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CarouselView />
-      <div className={classes.content}>
-        <Grid container className={classes.blogs} spacing={4} justify="center" alignItems="center">
-          {featuredPosts.map((post) => (
+      <div className={classes.bannerContents}><BannerGrid /></div>
+      <Typography className={classes.blogTitle} variant="h1" align="center">기술 블로그</Typography>
+      <Grid container className={classes.blogs} spacing={1} justify="center" alignItems="center">
+        {featuredPosts.map((post) => (
+          <Grid item xs={12} md={3} align="center">
             <FeaturedPost key={post.id} post={post} />
-          ))}
-
-          <Grid item xs={12}>
-            <Divider variant="middle" />
           </Grid>
-        </Grid>
+        ))}
+      </Grid>
+      <div className={classes.content}>
         <Grid container className={classes.notice} spacing={4} justify="center" alignItems="center">
           <Grid item xs={12} md={4}>
             <Typography className={classes.noticeTitle} variant="h3" align="center">

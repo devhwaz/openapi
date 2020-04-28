@@ -39,7 +39,9 @@ export default function BlogPage(props) {
       </Grid>
       <Grid container spacing={5}>
         {posts.map((post) => (
-          <FeaturedPost key={post.title} post={post} />
+          <Grid item xs={12} md={4}>
+            <FeaturedPost key={post.title} post={post} />
+          </Grid>
         ))}
       </Grid>
     </div>
