@@ -11,7 +11,7 @@ const posts = [
     date: 'April 27',
     description:
       'HTML페이지로 제작된 블로그 파일을 로드합니다.',
-    image: 'https://source.unsplash.com/random',
+    image: '/images/banners/html.jpg',
     imageText: 'Image Text',
     authors: authors,
     source: '/notebook_files/stock/stock.html'
@@ -22,7 +22,7 @@ const posts = [
     date: 'April 29',
     description:
       'Markdown 파일로 제작된 블로그 파일을 로드합니다.',
-    image: 'https://source.unsplash.com/random',
+    image: '/images/banners/markdown.png',
     imageText: 'Image Text',
     authors: authors,
     source: '/notebook_files/수정요함.md'
@@ -33,7 +33,7 @@ const posts = [
     date: 'April 30',
     description:
       '기타 형태의 블로그',
-    image: 'https://source.unsplash.com/random',
+    image: '/images/banners/bigdata.jpg',
     imageText: 'Image Text',
     authors: authors,
     source: '/notebook_files/수정요함.md'

@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   blogs: {
     backgroundColor:"#EEE",
+    padding:"50px 0px",
     [theme.breakpoints.up("lg")]: {
       
     }
