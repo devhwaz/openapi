@@ -17,11 +17,10 @@ import { CarouselView, BannerGrid } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    overflowX:"hidden"
+    overflow:"hidden"
   },
-  content: {
-    padding: theme.spacing(4)
-  },
+  content: theme.container
+  ,
   banner: {
     backgroundColor:"#EEE",
     top: "-20px",
@@ -58,11 +57,10 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(4,50)
     }
   },
-  blogTitle: {
+  dividerTitle: {
     backgroundColor:"#000000BB",
     color:"white",
     marginTop:0,
-    marginBottom:theme.spacing(1),
     position:"relative",
     display: "flex",
     justifyContent: "center",
@@ -70,9 +68,7 @@ const useStyles = makeStyles(theme => ({
     height:150
   },
   notice: {
-    [theme.breakpoints.up("lg")]: {
-      padding: "0 200px"
-    }
+    
   },
   noticeTitle: {
     fontSize:20
@@ -140,19 +136,20 @@ const Home = () => {
       <div className={classes.banner}>
         <Paper className={classes.bannerContents} variant="elevation" elevation={4}><BannerGrid /></Paper>
         <div className={classes.blogs}>
-          <Typography className={classes.blogTitle} variant="h1" align="center">FEATURED BLOGS</Typography>
-          <Grid container className={classes.featuredBlogs} spacing={2} justify="center" alignItems="center">
-            {featuredPosts.slice(0,3).map((post) => (
-              <Grid item xs={12} md={4} align="center">
-                <FeaturedPost key={post.id} post={post} />
-              </Grid>
-            ))}
-          </Grid>
+          <Typography className={classes.dividerTitle} variant="h1" align="center">FEATURED BLOGS</Typography>
+          <div className={classes.featuredBlogs}>
+            <Grid container className={classes.content} spacing={2} justify="center" alignItems="center">
+              {featuredPosts.slice(0,3).map((post) => (
+                <Grid item xs={12} md={4} align="center">
+                  <FeaturedPost key={post.id} post={post} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </div>
-        <Typography className={classes.blogTitle} variant="h1" align="center" style={{backgroundColor:"#111", marginTop:50}}>NOTICE</Typography>
       </div>
+      <Typography className={classes.dividerTitle} variant="h1" align="center" style={{backgroundColor:"#111", top:-20}}>NOTICE</Typography>
       <div className={classes.content}>
-
         <Grid container className={classes.notice} spacing={4} justify="center" alignItems="center">
           <Grid item xs={12} md={4}>
             <Typography className={classes.noticeTitle} variant="h3" align="center">
@@ -228,7 +225,6 @@ const Home = () => {
               </TabPanel>
             </div>
           </Grid>
-
         </Grid>
       </div>
     </div>

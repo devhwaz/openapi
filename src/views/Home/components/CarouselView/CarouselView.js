@@ -32,14 +32,20 @@ const useStyles = makeStyles(theme => ({
         fontSize: 70,
         color: "white",
         textShadow:"2px 2px 5px black",
-        marginBottom:30
+        marginBottom:30,
+        [theme.breakpoints.down("sm")]:{
+            fontSize:50
+        }
     },
     carouselText: {
         fontFamily:"NanumMyeongjo",
         fontWeight:500,
         fontSize: 23,
         color: "white",
-        textShadow:"0px 0px 5px black"
+        textShadow:"0px 0px 5px black",
+        [theme.breakpoints.down("sm")]:{
+            fontSize:17
+        }
     }
 }));
 

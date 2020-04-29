@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0),
     backgroundColor:"#f4f6f8",
     position:"relative",
-    zIndex:theme.zIndex.appBar
+    zIndex:theme.zIndex.appBar,
+    marginTop:theme.spacing(4)
   },
   logoContainer: {
     paddingLeft: 3,

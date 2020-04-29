@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    height:300
   },
   overlay: {
     position: 'absolute',
@@ -53,9 +54,9 @@ export default function MainFeaturedPost(props) {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href={"/blog/"+post.id}>
+            {/* <Link variant="subtitle1" href={"/blog/"+post.id}>
               → 읽어보기
-            </Link>
+            </Link> */}
           </div>
         </Grid>
       </Grid>

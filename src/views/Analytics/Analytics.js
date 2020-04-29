@@ -6,10 +6,8 @@ import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4),
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4,50)
-    }
+    ...theme.container,
+    marginTop:theme.spacing(4)
   },
   listIcon: {
     color:theme.palette.koscomMain

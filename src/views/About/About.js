@@ -5,10 +5,8 @@ import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4),
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4,50)
-    }
+    ...theme.container,
+    marginTop:theme.spacing(4)
   },
   quote: {
     margin:"70px 0px",
