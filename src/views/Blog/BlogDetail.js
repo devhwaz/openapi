@@ -36,7 +36,7 @@ export default function BlogDetail(props) {
 
   useEffect(() => {
     // id 값으로 Blog 컨텐츠 fetch 및 Blog 목록조회 필요
-    setPost(posts[0]);
+    setPost(posts[id-1]);
     setFeaturedPosts(posts);
   }, [])
 
@@ -73,7 +73,7 @@ export default function BlogDetail(props) {
       <Grid container spacing={5} className={classes.recommendGrid}>
         <Grid item xs={12}><Typography variant="h3" align="center">Featured Blogs</Typography></Grid>
         {featuredPosts.slice(0,3).map((post) => (
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} align="center">
             <FeaturedPost key={post.title} post={post} />
           </Grid>
         ))}

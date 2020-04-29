@@ -25,7 +25,7 @@ const posts = [
     image: '/images/banners/markdown.png',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/수정요함.md'
+    source: '/notebook_files/stock/stock.html'
   },
   {
     id:3,
@@ -36,7 +36,7 @@ const posts = [
     image: '/images/banners/bigdata.jpg',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/수정요함.md'
+    source: '/notebook_files/seaborn/seaborn.html'
   },
   {
     id:4,
