@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   gridItem:{
+    height:"300px !important",
     [theme.breakpoints.down("md")]:{
     width:"100% !important"
     }
@@ -88,7 +89,7 @@ export default function SingleLineGridList(props) {
       <GridList className={classes.gridList} cols={4}>
         {tileData.map((tile) => (
           <GridListTile key={tile.img} className={classes.gridItem}>
-            <img src={tile.img} alt={tile.title} />
+            <img src={tile.img} alt={tile.title} style={{height:"100%"}}/>
             <GridListTileBar
               title={tile.title}
               subtitle={<span>{tile.description}</span>}

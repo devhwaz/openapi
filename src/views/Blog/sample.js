@@ -37,6 +37,17 @@ const posts = [
     imageText: 'Image Text',
     authors: authors,
     source: '/notebook_files/수정요함.md'
+  },
+  {
+    id:4,
+    title: '기타 블로그 샘플',
+    date: 'April 30',
+    description:
+      '기타 형태의 블로그',
+    image: '/images/banners/bigdata.jpg',
+    imageText: 'Image Text',
+    authors: authors,
+    source: '/notebook_files/수정요함.md'
   }
 ];
 

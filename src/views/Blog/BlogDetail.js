@@ -9,7 +9,10 @@ import BlogDetailHtml from './BlogDetailHtml';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(4),
+    [theme.breakpoints.up("lg")]: {
+      padding: theme.spacing(4,50)
+    }
   },
   recommendGrid: {
     marginTop:theme.spacing(6),
@@ -67,7 +70,8 @@ export default function BlogDetail(props) {
         </Grid>
       </Grid>
       <Grid container spacing={5} className={classes.recommendGrid}>
-        {featuredPosts.map((post) => (
+        <Grid item xs={12}><Typography variant="h3" align="center">Featured Blogs</Typography></Grid>
+        {featuredPosts.slice(0,3).map((post) => (
           <Grid item xs={12} md={4}>
             <FeaturedPost key={post.title} post={post} />
           </Grid>

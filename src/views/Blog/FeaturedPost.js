@@ -12,10 +12,10 @@ import { Link, CardActions, Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 450,
+    maxWidth: 550,
   },
   media: {
-    height: 140,
+    height: 300,
   },
   card: {
     display: 'flex',
