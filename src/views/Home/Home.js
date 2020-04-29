@@ -22,23 +22,48 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(4)
   },
+  banner: {
+    backgroundColor:"#EEE",
+    top: "-20px",
+    position: "relative"
+  },
   bannerContents: {
-    [theme.breakpoints.up("lg")]:{
-      padding: theme.spacing(2,20)
+    margin: theme.spacing(2),
+    padding: theme.spacing(2,20),
+    borderRadius: 10,
+    position:"relative",
+    top:-100,
+    backgroundColor:"#FFFFFF77",
+    [theme.breakpoints.down("md")]:{
+      marginLeft:0,
+      marginRight:0,
+      padding: theme.spacing(2,0),
+      borderRadius: 0,
+      top:0
     }
   },
   carousel: {
     top: -3
   },
   blogs: {
-    backgroundColor:"#EEE",
-    padding:"50px 0px",
+    position:"relative",
     [theme.breakpoints.up("lg")]: {
-      
+      top:-70
+    }
+  },
+  featuredBlogs: {
+    backgroundImage: "linear-gradient(#999, #EEE)",
+    padding: theme.spacing(4),
+    [theme.breakpoints.up("lg")]: {
+      padding: theme.spacing(4,50)
     }
   },
   blogTitle: {
+    backgroundColor:"#000000BB",
+    color:"white",
     marginTop:0,
+    marginBottom:theme.spacing(1),
+    position:"relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -112,16 +137,22 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CarouselView />
-      <div className={classes.bannerContents}><BannerGrid /></div>
-      <Typography className={classes.blogTitle} variant="h1" align="center">기술 블로그</Typography>
-      <Grid container className={classes.blogs} spacing={1} justify="center" alignItems="center">
-        {featuredPosts.map((post) => (
-          <Grid item xs={12} md={3} align="center">
-            <FeaturedPost key={post.id} post={post} />
+      <div className={classes.banner}>
+        <Paper className={classes.bannerContents} variant="elevation" elevation={4}><BannerGrid /></Paper>
+        <div className={classes.blogs}>
+          <Typography className={classes.blogTitle} variant="h1" align="center">FEATURED BLOGS</Typography>
+          <Grid container className={classes.featuredBlogs} spacing={2} justify="center" alignItems="center">
+            {featuredPosts.slice(0,3).map((post) => (
+              <Grid item xs={12} md={4} align="center">
+                <FeaturedPost key={post.id} post={post} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </div>
+        <Typography className={classes.blogTitle} variant="h1" align="center" style={{backgroundColor:"#111", marginTop:50}}>NOTICE</Typography>
+      </div>
       <div className={classes.content}>
+
         <Grid container className={classes.notice} spacing={4} justify="center" alignItems="center">
           <Grid item xs={12} md={4}>
             <Typography className={classes.noticeTitle} variant="h3" align="center">

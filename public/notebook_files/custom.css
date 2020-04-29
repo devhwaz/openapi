@@ -35,6 +35,10 @@ div#header-container {
   a:link {
     text-decoration: none;
   }
+  body {
+    padding: 0px;
+    overflow-y:hidden;
+  }
   body,
   .CodeMirror {
     font-family: Roboto, "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -116,6 +120,7 @@ div#header-container {
   div.output_area {
     flex-direction: column;
     border-bottom: 1px dashed #ddd;
+    align-items: center;
   }
   div.output_subarea {
     padding: 5px;
@@ -231,6 +236,8 @@ div#header-container {
   
   div.cell {
     width: auto;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     /*margin-bottom: 5px;*/
   }
   div.cell.text_cell + div.cell.text_cell {
