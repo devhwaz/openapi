@@ -14,13 +14,16 @@ const useStyles = makeStyles(theme => ({
         height: 320,
     },
     carouselTitle: {
-        fontSize: 45,
+        fontSize: 50,
         color: "white",
+        textShadow:"2px 2px 5px black"
     },
     carouselText: {
-        fontSize: 20,
+        fontSize: 23,
+        fontWeight:"bold",
         color: "white",
-        textAlign: "center"
+        textAlign: "center",
+        textShadow:"0px 0px 5px black"
     }
 }));
 

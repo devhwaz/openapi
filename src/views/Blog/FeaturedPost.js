@@ -52,11 +52,6 @@ export default function FeaturedPost(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-        → 읽어보기
-        </Button>
-      </CardActions>
     </Card>
 
     // <CardActionArea component = "a" href = { "/blog/"+post.id } >
