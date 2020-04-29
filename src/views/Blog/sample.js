@@ -14,7 +14,7 @@ const posts = [
     image: '/images/banners/html.jpg',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/stock/stock.html'
+    source: '/notebook_files/kospi_capm/kospi_capm.html'
   },
   {
     id:2,

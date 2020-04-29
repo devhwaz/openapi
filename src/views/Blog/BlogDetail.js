@@ -65,9 +65,10 @@ export default function BlogDetail(props) {
         <Grid item xs={12}>
           <BlogDetailHtml source={post.source}/>
         </Grid>
+        {/* TODO: Markdown Fetch 후 결과 데이터 필요 
         <Grid item xs={12}>
-          <BlogDetailMarkdown source={""/* TODO: Markdown Fetch 후 결과 데이터 필요 */}/>
-        </Grid>
+          <BlogDetailMarkdown source={""}/>
+        </Grid> */}
       </Grid>
       <Grid container spacing={5} className={classes.recommendGrid}>
         <Grid item xs={12}><Typography variant="h3" align="center">Featured Blogs</Typography></Grid>

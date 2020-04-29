@@ -28,7 +28,7 @@ export default function SmallFeaturedPost(props) {
   return (
     <Grid item xs={12} md={6}>
       {/* TODO Post id 값으로 바꿀것 */}
-      <CardActionArea component="a" href="/blogDetail/1">
+      <CardActionArea component="a" href = { "/blog/"+post.id }>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
