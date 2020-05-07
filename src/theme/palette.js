@@ -4,7 +4,8 @@ const white = '#FFFFFF';
 const black = '#000000';
 const koscomDark = '#AB3D0B';
 const koscomMain = '#F36F32';
-const koscomLight = '#FFCCA9';
+const koscomLight = 'rgba(255,204,169,0.6)';
+const koscomText = '#58585a';
 
 export default {
   black,
@@ -12,6 +13,7 @@ export default {
   koscomDark,
   koscomMain,
   koscomLight,
+  koscomText,
   customblue: colors.blue[100],
   primary: {
     contrastText: white,

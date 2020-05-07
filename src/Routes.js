@@ -42,36 +42,42 @@ const Routes = () => {
         component={ApiView}
         exact
         sidebar
+        fixedTopbar
         layout={MainLayout}
         path="/api"
       />
       <RouteWithLayout
         component={BlogView}
         exact
+        fixedTopbar
         layout={MainLayout}
         path="/blog"
       />
       <RouteWithLayout
         component={BlogDetailView}
         exact
+        fixedTopbar
         layout={MainLayout}
         path="/blog/:id"
       />
       <RouteWithLayout
         component={AnalyticsView}
         exact
+        fixedTopbar
         layout={MainLayout}
         path="/analytics"
       />
       <RouteWithLayout
         component={CommunityView}
         exact
+        fixedTopbar
         layout={MainLayout}
         path="/community"
       />
       <RouteWithLayout
         component={InfoView}
         exact
+        fixedTopbar
         layout={MainLayout}
         path="/info"
       />

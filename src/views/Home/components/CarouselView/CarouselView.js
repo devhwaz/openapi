@@ -6,35 +6,31 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 const useStyles = makeStyles(theme => ({
     carousel: {
-        top: -3
+        
     },
     carouselPaper: {
         boxShadow: "none",
         borderRadius: 0,
-        height:300,
+        height:350,
         display: "flex",
         justifyContent: "center",
         alignItems: "start",
-        [theme.breakpoints.up("lg")]:{
-            height: 600,
-        }
     },
     carouselTextContainer:{
-        marginRight:50,
+        ...theme.container,
         marginTop:0,
         [theme.breakpoints.up("lg")]:{
-            marginRight:150,
-            marginTop:70
+            marginTop:50
         }
         
     },
     carouselTitle: {
-        fontSize: 70,
+        fontSize: 50,
         color: "white",
         textShadow:"2px 2px 5px black",
-        marginBottom:30,
+        marginBottom:10,
         [theme.breakpoints.down("sm")]:{
-            fontSize:50
+            fontSize:40
         }
     },
     carouselText: {
@@ -53,13 +49,13 @@ const items = [
     {
         index: 1,
         name: "마켓플레이스",
-        description: ["깊이있는 시장데이터", "다양한 산업 및 통계 데이터", "융합 분석이 가능한 분석 플랫폼"],
+        description: ["깊이있는 시장, 다양한 산업 및 통계 데이터", "융합 분석이 가능한 분석 플랫폼"],
         img: "/images/bg/bg01.jpg"
     },
     {
         index: 2,
         name: "코스콤 Kapi",
-        description: ["다양한 국내외 자본 시장의 데이터셋", "즉시 활용 가능한 편리한 라이브러리"],
+        description: ["다양한 국내외 자본 시장 데이터셋", "즉시 활용 가능한 API 라이브러리"],
         img: "/images/bg/bg02.jpg"
     },
     {
@@ -71,7 +67,7 @@ const items = [
     {
         index: 4,
         name: "코스콤 Kapi",
-        description: ["데이터도 카피", "소스도 카피", "누구나 쉽게"],
+        description: ["데이터와 소스코드는 카피", "누구나 쉽게 사용 가능한 개발 공간"],
         img: "/images/bg/bg04.jpg"
     }
 ];
@@ -103,11 +99,11 @@ export default function CarouselView(props) {
                     spacing={4}
                 >
                     <Grid item xs={12}>
-                        <Typography align="right" className={classes.carouselTitle}>{item.name}</Typography>
+                        <Typography align="center" className={classes.carouselTitle}>{item.name}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                     {item.description.map((text) => 
-                        <Typography align="right" className={classes.carouselText} gutterBottom>{text}</Typography>
+                        <Typography align="center" className={classes.carouselText} gutterBottom>{text}</Typography>
                     )}
                     </Grid>
                 </Grid>

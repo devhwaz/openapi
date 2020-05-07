@@ -8,7 +8,6 @@ import { Footer } from '../components';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: 105,
     height: '100%'
   },
   content: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Main = props => {
-  const { children, sidebar } = props;
+  const { children, sidebar, fixedTopbar } = props;
 
   const classes = useStyles();
 
@@ -27,7 +26,9 @@ const Main = props => {
         [classes.root]: true
       })}
     >
-      <Topbar currentLocation={children.props.location.pathname}/>
+      <Topbar
+        currentLocation={children.props.location.pathname}
+        fixedTopbar={fixedTopbar}/>
       <main className={classes.content}>
         {children}
         <Footer sidebar={sidebar} />

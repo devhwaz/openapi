@@ -13,25 +13,25 @@ import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
 import featuredPosts from '../Blog/sample';
 import { CarouselView, BannerGrid } from './components';
+import palette from 'theme/palette';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     overflow:"hidden"
   },
-  content: theme.container
+  content: {
+    ...theme.container
+  }
   ,
   banner: {
-    backgroundColor:"#EEE",
-    top: "-20px",
-    position: "relative"
+    
   },
   bannerContents: {
-    margin: theme.spacing(2),
-    padding: theme.spacing(2,20),
+    padding: theme.spacing(2),
     borderRadius: 10,
     position:"relative",
-    top:-100,
+    top:-50,
     backgroundColor:"#FFFFFF77",
     [theme.breakpoints.down("md")]:{
       marginLeft:0,
@@ -42,33 +42,17 @@ const useStyles = makeStyles(theme => ({
     }
   },
   carousel: {
-    top: -3
   },
-  blogs: {
-    position:"relative",
-    [theme.breakpoints.up("lg")]: {
-      top:-70
-    }
+  section: {
+    marginBottom:30
   },
   featuredBlogs: {
-    backgroundImage: "linear-gradient(#999, #EEE)",
-    padding: theme.spacing(4),
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4,50)
-    }
+    padding: theme.spacing(2, 0)
   },
   dividerTitle: {
-    backgroundColor:"#000000BB",
-    color:"white",
+    color:palette.koscomText,
     marginTop:0,
     position:"relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height:150
-  },
-  notice: {
-    
   },
   noticeTitle: {
     fontSize:20
@@ -133,12 +117,16 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CarouselView />
-      <div className={classes.banner}>
-        <Paper className={classes.bannerContents} variant="elevation" elevation={4}><BannerGrid /></Paper>
-        <div className={classes.blogs}>
-          <Typography className={classes.dividerTitle} variant="h1" align="center">FEATURED BLOGS</Typography>
+      <div className={classes.content}>
+        <div className={classes.banner}>
+          <Paper className={classes.bannerContents} variant="elevation" elevation={4}>
+            <BannerGrid />
+          </Paper>
+        </div>
+        <div className={classes.section}>
+          <Typography className={classes.dividerTitle} variant="h1" align="left">FEATURED BLOGS</Typography>
           <div className={classes.featuredBlogs}>
-            <Grid container className={classes.content} spacing={2} justify="center" alignItems="center">
+            <Grid container spacing={4} justify="center" alignItems="center">
               {featuredPosts.slice(0,3).map((post) => (
                 <Grid item xs={12} md={4} align="center">
                   <FeaturedPost key={post.id} post={post} />
@@ -147,85 +135,85 @@ const Home = () => {
             </Grid>
           </div>
         </div>
-      </div>
-      <Typography className={classes.dividerTitle} variant="h1" align="center" style={{backgroundColor:"#111", top:-20}}>NOTICE</Typography>
-      <div className={classes.content}>
-        <Grid container className={classes.notice} spacing={4} justify="center" alignItems="center">
-          <Grid item xs={12} md={4}>
-            <Typography className={classes.noticeTitle} variant="h3" align="center">
-              공지사항
-              </Typography>
-            <Typography className={classes.noticeMore} variant="caption" align="right">more</Typography>
-            <TableContainer className={classes.table} component={Paper}>
-              <Table size="small" aria-label="a dense table">
-                <TableHead className={classes.tableHead}>
-                  <TableRow>
-                    <TableCell align="center">제목</TableCell>
-                    <TableCell align="center">일자</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="center">{row.date}</TableCell>
+        <div className={classes.section}>
+          <Typography className={classes.dividerTitle} variant="h1" align="left">NOTICE</Typography>
+          <Grid container spacing={4} justify="center" alignItems="center">
+            <Grid item xs={12} md={4}>
+              <Typography className={classes.noticeTitle} variant="h3" align="center">
+                공지사항
+                </Typography>
+              <Typography className={classes.noticeMore} variant="caption" align="right">more</Typography>
+              <TableContainer className={classes.table} component={Paper}>
+                <Table size="small" aria-label="a dense table">
+                  <TableHead className={classes.tableHead}>
+                    <TableRow>
+                      <TableCell align="center">제목</TableCell>
+                      <TableCell align="center">일자</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography className={classes.noticeTitle} variant="h3" align="center">
-              FAQ
-              </Typography>
-            <Typography className={classes.noticeMore} variant="caption" align="right">more</Typography>
-            <TableContainer className={classes.table} component={Paper}>
-              <Table size="small" aria-label="a dense table">
-                <TableHead className={classes.tableHead}>
-                  <TableRow>
-                    <TableCell align="center">제목</TableCell>
-                    <TableCell align="center">일자</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="center">{row.date}</TableCell>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="center">{row.date}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Typography className={classes.noticeTitle} variant="h3" align="center">
+                FAQ
+                </Typography>
+              <Typography className={classes.noticeMore} variant="caption" align="right">more</Typography>
+              <TableContainer className={classes.table} component={Paper}>
+                <Table size="small" aria-label="a dense table">
+                  <TableHead className={classes.tableHead}>
+                    <TableRow>
+                      <TableCell align="center">제목</TableCell>
+                      <TableCell align="center">일자</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={12} md={4} style={{paddingTop:30}}>
-            <div className={classes.contactRoot}>
-              <Tabs
-                value={value}
-                indicatorColor="secondary"
-                textColor="secondary"
-                variant="fullWidth"
-                onChange={handleChange}
-                className={classes.tabs}
-              >
-                <Tab className={classes.tab} label="이메일 문의" />
-                <Tab className={classes.tab} label="전화 연락처" />
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="center">{row.date}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+            <Grid item xs={12} md={4} style={{paddingTop:30}}>
+              <div className={classes.contactRoot}>
+                <Tabs
+                  value={value}
+                  indicatorColor="secondary"
+                  textColor="secondary"
+                  variant="fullWidth"
+                  onChange={handleChange}
+                  className={classes.tabs}
+                >
+                  <Tab className={classes.tab} label="이메일 문의" />
+                  <Tab className={classes.tab} label="전화 연락처" />
 
-              </Tabs>
-              <TabPanel style={tabPanelStyle} value={value} index={0} align="center">
-                <ContactMailRoundedIcon style={{fontSize:30, marginRight:10}}/>developers@koscom.co.kr
-              </TabPanel>
-              <TabPanel style={tabPanelStyle} value={value} index={1} align="center">
-                <ContactPhoneRoundedIcon style={{fontSize:30, marginRight:10}} /> 대표번호 : 02-767-7114
-              </TabPanel>
-            </div>
+                </Tabs>
+                <TabPanel style={tabPanelStyle} value={value} index={0} align="center">
+                  <ContactMailRoundedIcon style={{fontSize:30, marginRight:10}}/>developers@koscom.co.kr
+                </TabPanel>
+                <TabPanel style={tabPanelStyle} value={value} index={1} align="center">
+                  <ContactPhoneRoundedIcon style={{fontSize:30, marginRight:10}} /> 대표번호 : 02-767-7114
+                </TabPanel>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       </div>
     </div>
   );

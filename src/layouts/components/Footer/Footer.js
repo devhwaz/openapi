@@ -10,13 +10,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:"#f4f6f8",
     position:"relative",
     zIndex:theme.zIndex.appBar,
-    marginTop:theme.spacing(4)
+    marginTop:theme.spacing(4),
   },
+  contents: theme.container
+  ,
   logoContainer: {
-    paddingLeft: 3,
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: 150
-    }
+    
   },
   logo: {
     padding:"20px 0px"
@@ -27,11 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
   itemRight: {
     paddingTop:"20px",
-    display:"block",
-    paddingRight:3,
-    [theme.breakpoints.up('md')]: {
-      paddingRight: 150
-    }
+    display:"block"
   }
 }));
 
@@ -51,10 +46,8 @@ const Footer = props => {
       className={clsx(classes.root, className)}
       style={{marginLeft: sidebar && isDesktop ? 240: 0}}
     >
-      <Grid container>
-        <Grid item xs={12}>
-          <Divider style={{height:5}}/>
-        </Grid>
+      <Divider style={{height:5}}/>
+      <Grid container className={classes.contents}>
         <Grid item xs={6}>
           <div className={classes.logoContainer}>
           <Link
