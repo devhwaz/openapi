@@ -1,82 +1,48 @@
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import {useMediaQuery} from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
-import React from 'react';
 import { useTheme } from '@material-ui/styles';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper
+    maxWidth: 380,
+    height:380,
+    borderRadius:0
   },
-  gridList: {
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-    [theme.breakpoints.down("md")]:{
-      flexDirection:"column"
-    }
+  mediaContainer:{
+    display: "flex",
+    justifyContent: "center",
+    marginTop:theme.spacing(5),
+    marginBottom:theme.spacing(2)
   },
-  gridItem:{
-    height:"300px !important",
-    [theme.breakpoints.down("md")]:{
-    width:"100% !important"
-    }
+  media: {
+    height: 122,
+    width:122
   },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+  actionContainer:{
+    display: "flex",
+    justifyContent: "center",
+    marginTop:theme.spacing(2)
   }
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-
 const tileData = [
     {
-      img: '/images/banners/account.jpg',
-      title: '계좌 서비스',
-      description: '금융투자회사가 제공하는 계좌기반 API',
+      img: '/images/banners/price.svg',
+      title: '시세 서비스',
+      description: '주식, 선물, 옵션 등 주요 시세',
       cols: 2,
       featured: true,
     },
     {
-      img: '/images/banners/stock.jpg',
-      title: '시세 서비스',
-      description: '주식,선물,옵션등 주요 시세',
-    },
-    {
-      img: '/images/banners/finance.jpg',
+      img: '/images/banners/finance.svg',
       title: '재무정보',
       description: '위버플, NICE, FABOT 제공 재무정보',
     },
     {
-      img: '/images/banners/analytics.jpg',
+      img: '/images/banners/analytics.svg',
       title: '분석 서비스',
       description: 'BC카드 업종정보, RA, BIGBOT',
-      featured: true,
     }
 ];
 
@@ -86,21 +52,33 @@ export default function SingleLineGridList(props) {
   const theme = useTheme();
 
   return (
-      <GridList className={classes.gridList} cols={4}>
+      <Grid container>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img} className={classes.gridItem}>
-            <img src={tile.img} alt={tile.title} style={{height:"100%"}}/>
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>{tile.description}</span>}
-              actionIcon={
-                <IconButton aria-label={`star ${tile.title}`}>
-                  <ArrowForwardRoundedIcon className={classes.icon} />
-                </IconButton>
-              }
-            />
-          </GridListTile>
+          <Grid item xs={12} md={4}>
+            <Card className={classes.root}>
+              <div className={classes.mediaContainer}>
+                <CardMedia
+                  className={classes.media}
+                  image={tile.img}
+                  title={tile.title}
+                />
+              </div>
+              <CardContent>
+                <Typography gutterBottom variant="h2" align="center">
+                  {tile.title}
+                </Typography>
+                <Typography variant="subtitle1" color="textSecondary" align="center">
+                  {tile.description}
+                </Typography>
+              </CardContent>
+              <CardActions className={classes.actionContainer}>
+                <Button color="primary" variant="contained">
+                  자세히보기
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
         ))}
-      </GridList>
+      </Grid>
   );
 }

@@ -22,7 +22,11 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     ...theme.container,
-    height:65
+    height:65,
+    [theme.breakpoints.down("sm")]:{
+      display:"block",
+      height:85
+    }
   },
   changeColorOnScroll :{
     backgroundColor: "white",

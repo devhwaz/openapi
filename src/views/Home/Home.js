@@ -14,6 +14,7 @@ import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
 import featuredPosts from '../Blog/sample';
 import { CarouselView, BannerGrid } from './components';
 import palette from 'theme/palette';
+import clsx from 'clsx';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,11 +29,9 @@ const useStyles = makeStyles(theme => ({
     
   },
   bannerContents: {
-    padding: theme.spacing(2),
-    borderRadius: 10,
     position:"relative",
     top:-50,
-    backgroundColor:"#FFFFFF77",
+    marginBottom: -18,
     [theme.breakpoints.down("md")]:{
       marginLeft:0,
       marginRight:0,
@@ -47,12 +46,16 @@ const useStyles = makeStyles(theme => ({
     marginBottom:30
   },
   featuredBlogs: {
-    padding: theme.spacing(2, 0)
+    
   },
   dividerTitle: {
-    color:palette.koscomText,
-    marginTop:0,
-    position:"relative",
+    display:"flex",
+    alignItems:"center",
+    margin:theme.spacing(6,0),
+    color:theme.palette.koscom.text
+  },
+  notice: {
+    backgroundColor: palette.divider
   },
   noticeTitle: {
     fontSize:20
@@ -118,11 +121,9 @@ const Home = () => {
     <div className={classes.root}>
       <CarouselView />
       <div className={classes.content}>
-        <div className={classes.banner}>
-          <Paper className={classes.bannerContents} variant="elevation" elevation={4}>
+          <Paper className={classes.bannerContents} variant="elevation" elevation={1}>
             <BannerGrid />
           </Paper>
-        </div>
         <div className={classes.section}>
           <Typography className={classes.dividerTitle} variant="h1" align="left">FEATURED BLOGS</Typography>
           <div className={classes.featuredBlogs}>
@@ -135,7 +136,7 @@ const Home = () => {
             </Grid>
           </div>
         </div>
-        <div className={classes.section}>
+        <div className={clsx(classes.section)}>
           <Typography className={classes.dividerTitle} variant="h1" align="left">NOTICE</Typography>
           <Grid container spacing={4} justify="center" alignItems="center">
             <Grid item xs={12} md={4}>

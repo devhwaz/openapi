@@ -5,28 +5,28 @@ export default {
   h1: {
     color: palette.text.primary,
     fontWeight: 1000,
-    fontSize: '35px',
+    fontSize: '36px',
     letterSpacing: '-0.24px',
     lineHeight: '40px'
   },
   h2: {
     color: palette.text.primary,
     fontWeight: 1000,
-    fontSize: '29px',
+    fontSize: '24px',
     letterSpacing: '-0.24px',
     lineHeight: '32px'
   },
   h3: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
     fontWeight: 1000,
-    fontSize: '24px',
+    fontSize: '16px',
     letterSpacing: '-0.06px',
     lineHeight: '28px'
   },
   h4: {
-    color: palette.text.primary,
-    fontWeight: 500,
-    fontSize: '20px',
+    color: palette.text.secondary,
+    fontWeight: 1000,
+    fontSize: '16px',
     letterSpacing: '-0.06px',
     lineHeight: '24px'
   },
@@ -38,14 +38,14 @@ export default {
     lineHeight: '20px'
   },
   h6: {
-    color: palette.text.primary,
+    color: palette.text.secondary,
     fontWeight: 500,
-    fontSize: '14px',
+    fontSize: '16px',
     letterSpacing: '-0.05px',
     lineHeight: '20px'
   },
   subtitle1: {
-    color: palette.text.primary,
+    color: palette.text.secondary,
     fontSize: '16px',
     letterSpacing: '-0.05px',
     lineHeight: '25px'

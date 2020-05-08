@@ -9,23 +9,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import { Link, CardActions, Button } from '@material-ui/core';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 550,
+    maxWidth: 360,
+    maxHeight: 440
   },
   media: {
-    height: 300,
+    height: 300
   },
-  card: {
-    display: 'flex',
+  title: {
+    height:40
   },
-  cardDetails: {
-    flex: 1,
-  },
-  cardMedia: {
-    width: 160,
-  },
+  description: {
+    height:36
+  }
 });
 
 export default function FeaturedPost(props) {
@@ -34,51 +33,25 @@ export default function FeaturedPost(props) {
 
   return (
 
-    <Card className={classes.root} raised={true}>
+    <Card className={classes.root} raised={true} elevation={2}>
       <CardActionArea component = "a" href = { "/blog/"+post.id }>
         <CardMedia
           className={classes.media}
           image={post.image} title={post.imageTitle}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography className={clsx(classes.title,"text-overflow")} gutterBottom variant="h5">
             {post.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography className={clsx(classes.description,"text-overflow")} variant="body2">
             {post.description}
           </Typography>
-          <Typography variant="caption" color="textSecondary" component="p">
+          <Typography variant="caption">
             {post.date}
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-
-    // <CardActionArea component = "a" href = { "/blog/"+post.id } >
-    //   <Card className={classes.card} raised={true}>
-    //     <div className={classes.cardDetails}>
-    //       <CardContent>
-    //         <Typography component="h2" variant="h5">
-    //           {post.title}
-    //         </Typography>
-    //         <Typography variant="subtitle1" color="textSecondary">
-    //           {post.date}
-    //         </Typography>
-    //         <Typography variant="subtitle1" paragraph>
-    //           {post.description}
-    //         </Typography>
-    //         <Typography variant="subtitle1" color="primary">
-    //           <Link variant="subtitle1" href={"/blog/" + post.id}>
-    //             → 읽어보기
-    //           </Link>
-    //         </Typography>
-    //       </CardContent>
-    //     </div>
-    //     <Hidden xsDown>
-    //       <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
-    //     </Hidden>
-    //   </Card>
-    //   </CardActionArea >
   );
 }
 

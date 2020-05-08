@@ -12,8 +12,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    justifyContent: "center",
-    
+    justifyContent: "space-evenly",
     height:30
   },
   menuButton: {
