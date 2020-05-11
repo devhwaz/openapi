@@ -5,11 +5,15 @@ import React from "react";
 import MainFeaturedPost from './MainFeaturedPost';
 import posts from "./sample";
 import SmallFeaturedPost from "./SmallFeaturedPost";
+import FeaturedPost from "./FeaturedPost";
 
 const useStyles = makeStyles(theme => ({
   root: {
     ...theme.container,
     marginTop:theme.spacing(4)
+  },
+  section: {
+    padding:theme.spacing(2,0)
   }
 }));
 
@@ -32,18 +36,19 @@ export default function BlogPage(props) {
   */}
   return (
     <div className={classes.root}>
-      <MainFeaturedPost post={posts[3]} />
-      <Grid container justify="flex-start">
+      <MainFeaturedPost post={posts[0]} />
+      <Grid container justify="flex-start" className={classes.section}>
         <Grid item xs={12} md={4}>
           <SearchInput
             placeholder="Search Blogs"
           />
         </Grid>
       </Grid>
-      <Divider style={{margin:"20px 0px"}}/>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} className={classes.section}>
         {posts.map((post) => (
-            <SmallFeaturedPost key={post.title} post={post} />
+          <Grid item xs={12} md={4} align="center" key={post.id}>
+            <FeaturedPost post={post} />
+          </Grid>
         ))}
       </Grid>
     </div>

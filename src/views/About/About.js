@@ -6,7 +6,7 @@ import EmailIcon from '@material-ui/icons/Email';
 const useStyles = makeStyles(theme => ({
   root: {
     ...theme.container,
-    marginTop:theme.spacing(4)
+    margin:theme.spacing(4,0)
   },
   quote: {
     margin:"70px 0px",
@@ -40,14 +40,14 @@ export default function About(props) {
                   <br/>
                   <br/>많은 이용 바랍니다.</Typography>
         </Grid>
-        <Grid item xs={12} md={3}>
+        {/* <Grid item xs={12} md={3}>
           <Typography variant="h3" style={{display:"flex"}}><EmailIcon />&nbsp;제휴문의</Typography>
           <Typography variant="subtitle1" gutterBottom>open@koscom.co.kr</Typography>
         </Grid>
         <Grid item xs={12} md={3}>
           <Typography variant="h3" style={{display:"flex"}}><EmailIcon />&nbsp;신규 데이터 요청</Typography>
           <Typography variant="subtitle1">developers@koscom.co.kr</Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

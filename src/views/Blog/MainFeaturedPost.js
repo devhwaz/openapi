@@ -5,8 +5,12 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import { Card, CardActionArea } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    height:300
+  },
   mainFeaturedPost: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
@@ -41,9 +45,8 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+    <Card elevation={0} className={classes.root}>
+      <CardActionArea  className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }} href={"/blog/"+post.id}>
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>
@@ -60,7 +63,8 @@ export default function MainFeaturedPost(props) {
           </div>
         </Grid>
       </Grid>
-    </Paper>
+      </CardActionArea>
+    </Card>
   );
 }
 
