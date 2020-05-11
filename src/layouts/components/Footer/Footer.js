@@ -6,11 +6,10 @@ import { Typography, Link, Grid, Divider, useMediaQuery } from '@material-ui/cor
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(0),
-    backgroundColor:"#f4f6f8",
     position:"relative",
     zIndex:theme.zIndex.appBar,
-    marginTop:theme.spacing(4),
+    padding:theme.spacing(4,0),
+    borderTop:`5px solid ${theme.palette.divider}`
   },
   contents: theme.container
   ,
@@ -18,14 +17,14 @@ const useStyles = makeStyles(theme => ({
     
   },
   logo: {
-    padding:"20px 0px"
+    paddingBottom:theme.spacing(2)
   },
   item: {
     paddingBottom:"5px",
     display:"block"
   },
   itemRight: {
-    paddingTop:"20px",
+    
     display:"block"
   }
 }));
@@ -46,7 +45,6 @@ const Footer = props => {
       className={clsx(classes.root, className)}
       style={{marginLeft: sidebar && isDesktop ? 240: 0}}
     >
-      <Divider style={{height:5}}/>
       <Grid container className={classes.contents}>
         <Grid item xs={6}>
           <div className={classes.logoContainer}>

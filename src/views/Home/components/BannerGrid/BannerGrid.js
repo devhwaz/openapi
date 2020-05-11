@@ -54,7 +54,7 @@ export default function SingleLineGridList(props) {
   return (
       <Grid container>
         {tileData.map((tile) => (
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} key={tile.title}>
             <Card className={classes.root}>
               <div className={classes.mediaContainer}>
                 <CardMedia

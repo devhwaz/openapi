@@ -1,1 +1,1 @@
-export { default as CarouselView } from './CarouselView';
+export { default } from './CarouselView';

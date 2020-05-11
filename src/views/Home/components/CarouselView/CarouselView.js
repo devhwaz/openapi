@@ -74,7 +74,7 @@ export default function CarouselView(props) {
 
     function Project(props) {
 
-        const { item, key, ...rest } = props;
+        const { item, ...rest } = props;
 
         return (
             <Paper
@@ -94,12 +94,9 @@ export default function CarouselView(props) {
                     container
                     spacing={4}
                 >
-                    {/* <Grid item xs={12}>
-                        <Typography align="center" className={classes.carouselTitle}>{item.name}</Typography>
-                    </Grid> */}
                     <Grid item xs={12}>
-                    {item.description.map((text) => 
-                        <Typography align="center" className={classes.carouselText} gutterBottom>{text}</Typography>
+                    {item.description.map((text,index) => 
+                        <Typography align="center" className={classes.carouselText} gutterBottom key={index}>{text}</Typography>
                     )}
                     </Grid>
                 </Grid>
