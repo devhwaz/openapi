@@ -8,7 +8,11 @@ const useStyles = makeStyles(theme => ({
     root: {
       backgroundColor:"white",
       height:"100%",
-      padding:theme.spacing(4)
+      padding:theme.spacing(4),
+      paddingBottom:0
+    },
+    title:{
+        marginBottom:theme.spacing(2)
     },
     line: {
         display:"flex",
@@ -34,7 +38,7 @@ const Contact = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h2" align="center" gutterBottom>보다 편리한 금융IT 솔루션과<br></br>신속한 고객서비스</Typography>
+            <Typography className={classes.title} variant="h2" align="center">보다 편리한 금융IT 솔루션과<br></br>신속한 고객서비스</Typography>
             <div className={classes.line}>
                 <span className={classes.icon}><PhoneIcon /></span>
                 <Typography variant="subtitle1">02-767-7114</Typography>
