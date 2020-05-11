@@ -63,7 +63,7 @@ export default function Analytics(props) {
           </List>
         </Grid>
         <Grid item xs={12} md={6}>
-            <ReactPlayer url='/videos/analytics_mp.mp4' playing width="100%" loop={true}/>
+            <ReactPlayer url='/videos/analytics_mp.mp4' playing width="100%" loop={true} controls={true} />
         </Grid>
       </Grid>
     </div>

@@ -30,8 +30,8 @@ const useStyles = makeStyles(theme => ({
   },
   menu: {
     position:"fixed",
-    top:20,
-    right:30,
+    top:theme.spacing(1),
+    right:theme.spacing(3),
     zIndex:100000
 
   }
