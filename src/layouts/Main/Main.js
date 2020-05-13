@@ -34,7 +34,7 @@ const Main = props => {
       <Topbar
         currentLocation={children.props.location.pathname}
         fixedTopbar={fixedTopbar}/>
-        <main className={classes.content}>
+      <main className={classes.content}>
           <div className={clsx({
             [classes.contentPadding]: fixedTopbar
           })}>

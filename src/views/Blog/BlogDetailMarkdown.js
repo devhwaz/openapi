@@ -167,7 +167,7 @@ for information on how to get started contributing to the project.
 
 export default function BlogDetailMarkdown(props) {
 
-  const {source, ...rest} = props;
+  const { source } = props;
 
   const classes = useStyles();
 

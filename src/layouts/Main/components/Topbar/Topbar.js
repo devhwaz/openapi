@@ -5,13 +5,12 @@ import { Menubar } from 'layouts/components';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import palette from 'theme/palette';
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: "transparent",
     paddingTop:10,
-    transition: "all 300ms ease 0s"
+    transition: "background-color 300ms ease 0s"
   },
   content: theme.container,
   flexGrow: {

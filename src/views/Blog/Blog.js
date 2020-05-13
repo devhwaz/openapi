@@ -1,11 +1,10 @@
-import { Divider, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { SearchInput } from "components";
 import React from "react";
+import FeaturedPost from "./FeaturedPost";
 import MainFeaturedPost from './MainFeaturedPost';
 import posts from "./sample";
-import SmallFeaturedPost from "./SmallFeaturedPost";
-import FeaturedPost from "./FeaturedPost";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +19,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function BlogPage(props) {
   const classes = useStyles();
-  const { ...rest } = props;
   {/* Blog 목록조회 필요.
     const [posts, setPosts] = useState("");
 

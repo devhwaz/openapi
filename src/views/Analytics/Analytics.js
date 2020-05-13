@@ -1,8 +1,8 @@
+import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-import { Grid, Typography, List, ListItem, ListItemText, ListItemIcon, Paper } from "@material-ui/core";
-import ReactPlayer from 'react-player';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
+import React from "react";
+import ReactPlayer from 'react-player';
 
 const useStyles = makeStyles(theme => ({
   root: {

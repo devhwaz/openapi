@@ -1,20 +1,18 @@
-import { Typography, Divider } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ArrowRightRoundedIcon from '@material-ui/icons/ArrowRightRounded';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import PowerIcon from '@material-ui/icons/Power';
+import PublicIcon from '@material-ui/icons/Public';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import React from 'react';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SidebarNavigation(props) {
 
-  const { callback, ...rest } = props;
+  const { navigate } = props;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -38,33 +36,28 @@ export default function SidebarNavigation(props) {
     setOpen(!open);
   };
 
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   return (
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          <Typography variant="subtitle2" gutterBottom align="center">KOSCOM API 서비스</Typography>
-          <Divider style={{marginBottom:15}}/>
-        </ListSubheader>
-      }
       className={classes.root}
+      disablePadding
     >
-      <ListItem button selected onClick={() => callback("service_connection")}>
-        <ListItemIcon>
-          <PowerIcon />
-        </ListItemIcon>
-        <ListItemText primary="서비스 연결" />
+      <ListItem button divider onClick={() => navigate(-1)} style={{marginBottom:16}} >
+        <ListItemText align="center" primary="API 분류" primaryTypographyProps={{variant:"h3"}} style={{margin:0}}/>
       </ListItem>
 
-      <ListItem button onClick={() => callback("account_service")}>
-        <ListItemIcon>
-          <AccountBalanceWalletIcon />
-        </ListItemIcon>
-        <ListItemText primary="계좌 서비스" />
-      </ListItem>
-
-      <ListItem button onClick={() => callback("order_service")}>
+      <ListItem button onClick={() => navigate(-1, "order_service")}>
         <ListItemIcon>
           <ShopTwoIcon />
         </ListItemIcon>
@@ -75,24 +68,24 @@ export default function SidebarNavigation(props) {
         <ListItemIcon>
           <TimelineIcon />
         </ListItemIcon>
-        <ListItemText primary="시세 서비스" />
+        <ListItemText primary="국내 시세" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested} onClick={() => callback("stock_price")}>
+          <ListItem button className={classes.nested} onClick={() => navigate(-1, "stock_price")}>
             <ListItemIcon>
               <ArrowRightRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="주식 시세" />
           </ListItem>
-          <ListItem button className={classes.nested} onClick={() => callback("future_price")}>
+          <ListItem button className={classes.nested} onClick={() => navigate(-1, "future_price")}>
             <ListItemIcon>
               <ArrowRightRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="선물 시세" />
           </ListItem>
-          <ListItem button className={classes.nested} onClick={() => callback("option_price")}>
+          <ListItem button className={classes.nested} onClick={() => navigate(-1, "option_price")}>
             <ListItemIcon>
               <ArrowRightRoundedIcon />
             </ListItemIcon>
@@ -100,32 +93,32 @@ export default function SidebarNavigation(props) {
           </ListItem>
         </List>
       </Collapse>
-      
-      {/* <ListItem button onClick={() => callback("fundamental")}>
+      <ListItem button onClick={handleOpenDialog}>
         <ListItemIcon>
-          <LocalAtmIcon />
+          <PublicIcon />
         </ListItemIcon>
-        <ListItemText primary="재무 서비스" />
+        <ListItemText primary="해외 시세" />
       </ListItem>
-
-      <ListItem button onClick={() => callback("buy")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="일임매매" />
-      </ListItem>
-      <ListItem button onClick={() => callback("analysis")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="분석 서비스" />
-      </ListItem>
-      <ListItem button onClick={() => callback("search")}>
-        <ListItemIcon>
-          <LocalAtmIcon />
-        </ListItemIcon>
-        <ListItemText primary="검색 서비스" />
-      </ListItem> */}
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h3">죄송합니다</Typography>
+        </DialogTitle>
+        <DialogContent dividers>
+          <DialogContentText id="alert-dialog-description">
+            해외시세는 현재 준비중에 있습니다. 조금만 기다려 주세요.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary" autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </List>
   );
 }

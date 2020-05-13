@@ -8,8 +8,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BlogDetailHtml(props) {
-  const classes = useStyles();
-  const { title , source, ...rest} = props;
+  
+  const { title , source } = props;
+
+  // const classes = useStyles();
 
   const autoHeight = (event) => {
     const frame = event.target;

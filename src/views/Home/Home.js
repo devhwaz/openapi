@@ -1,19 +1,10 @@
-import { Button, Grid, Paper, Typography, Divider, Tabs, Tab } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import React, { useState } from 'react';
-import FeaturedPost from 'views/Blog/FeaturedPost';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { TabPanel } from 'components';
-import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
-import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
-import featuredPosts from '../Blog/sample';
-import { CarouselView, BannerGrid, Contact, Notice } from './components';
 import clsx from 'clsx';
+import React from 'react';
+import FeaturedPost from 'views/Blog/FeaturedPost';
+import featuredPosts from '../Blog/sample';
+import { BannerGrid, CarouselView, Contact, Notice } from './components';
 
 
 const useStyles = makeStyles(theme => ({

@@ -1,11 +1,10 @@
-import { Avatar, Grid, Typography, Divider } from '@material-ui/core';
+import { Avatar, Divider, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import { AvatarGroup } from '@material-ui/lab';
 import React, { useEffect, useState } from "react";
-import BlogDetailMarkdown from './BlogDetailMarkdown';
+import BlogDetailHtml from './BlogDetailHtml';
 import FeaturedPost from './FeaturedPost';
 import posts from "./sample";
-import BlogDetailHtml from './BlogDetailHtml';
 
 const useStyles = makeStyles(theme => ({
   root: {

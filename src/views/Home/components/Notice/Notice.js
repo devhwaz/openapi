@@ -1,13 +1,6 @@
-import { Button, Grid, Paper, Typography, Link } from '@material-ui/core';
+import { Button, Link, Typography } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
 
@@ -55,6 +48,13 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             textDecoration:"none"
         }
+    },
+    header: {
+        display:"flex"
+    },
+    more: {
+        display:"flex",
+        alignItems:"flex-end"
     }
 }))
 
@@ -89,7 +89,7 @@ const Notice = (props) => {
 
     const createArticle = (idx, title,date) => {return(
         <ListItem className={classes.article} key={idx}>
-            <ListItem button disableGutters divider={idx!=3}>
+            <ListItem button disableGutters divider={idx!==3}>
                 <Typography className={classes.title} variant="subtitle2" align="left">{title}</Typography>
                 <Typography className={classes.date} variant="subtitle2" align="center">{date}</Typography>
             </ListItem>
@@ -98,16 +98,20 @@ const Notice = (props) => {
 
     return (
         <div className={classes.root}>
-            <Button className={board==0?classes.buttonActive:classes.buttonInactive} variant="contained" color={board==0?"secondary":"default"} onClick={setNoticeBoard}>공지사항</Button>
-            <Button className={board==1?classes.buttonActive:classes.buttonInactive} variant="contained" color={board==1?"secondary":"default"} onClick={setFaqBoard}>FAQ</Button>
+            <div className={classes.header}>
+                <Button className={board===0?classes.buttonActive:classes.buttonInactive} variant="contained" color={board===0?"secondary":"default"} onClick={setNoticeBoard}>공지사항</Button>
+                <Button className={board===1?classes.buttonActive:classes.buttonInactive} variant="contained" color={board===1?"secondary":"default"} onClick={setFaqBoard}>FAQ</Button>
+                <div style={{flexGrow:1}}></div>
+                <Typography className={classes.more} variant="body2" align="right" component="span"><Link href="#" underline="none">more+</Link></Typography>
+            </div>
             {
-                board==0 &&
+                board===0 &&
                 <List className={classes.board}>
                     {rows.slice(0,4).map((data,index) => createArticle(index,data.title,data.date))}
                 </List>
             }
             {
-                board==1 &&
+                board===1 &&
                 <List className={classes.board}>
                     {rows.slice(0,4).map((data,index) => createArticle(index,data.title,data.date))}
                 </List>

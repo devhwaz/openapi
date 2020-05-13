@@ -3,7 +3,6 @@ import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 import Info from '@material-ui/icons/Info';
 import MenuBook from '@material-ui/icons/MenuBook';
-import People from '@material-ui/icons/People';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -50,17 +49,17 @@ const Menubar = props => {
 
   return (
     <div className={classes.root}>
-      <Tooltip title="API 메뉴얼">
+      <Tooltip title="코스콤 API 메뉴얼">
         <Button href="/api" variant={setContained("/api")} className={buttonClasses} color="secondary" disableElevation size="small">
           <DeveloperBoardIcon className={classes.menuIcon} /> API
         </Button>
       </Tooltip>
-      <Tooltip title="데이터 분석플랫폼">
+      <Tooltip title="데이터 분석플랫폼을 소개합니다">
         <Button href="/analytics" variant={setContained("/analytics")} className={buttonClasses} color="secondary" disableElevation>
           <AssessmentOutlinedIcon className={classes.menuIcon} /> Analytics
         </Button>
       </Tooltip>
-      <Tooltip title="데이터분석 테크 블로그">
+      <Tooltip title="데이터분석 사례가 있는 기술 블로그">
         <Button href="/blog" variant={setContained("/blog")} className={buttonClasses} color="secondary" disableElevation>
           <MenuBook className={classes.menuIcon} /> Blog
         </Button>

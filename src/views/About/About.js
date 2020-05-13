@@ -1,7 +1,6 @@
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { Grid, Typography, List, ListItem, ListItemText, ListItemIcon, Paper } from "@material-ui/core";
-import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles(theme => ({
   root: {

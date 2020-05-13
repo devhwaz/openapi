@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
-import { Typography, Link, Grid, Divider, useMediaQuery } from '@material-ui/core';
+import { Typography, Link, Grid, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {

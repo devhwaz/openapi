@@ -74,7 +74,7 @@ export default function CarouselView(props) {
 
     function Project(props) {
 
-        const { item, ...rest } = props;
+        const { item } = props;
 
         return (
             <Paper

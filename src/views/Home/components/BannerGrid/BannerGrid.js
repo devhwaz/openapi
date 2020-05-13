@@ -49,8 +49,6 @@ const tileData = [
 export default function SingleLineGridList(props) {
   const classes = useStyles();
 
-  const theme = useTheme();
-
   return (
       <Grid container>
         {tileData.map((tile) => (

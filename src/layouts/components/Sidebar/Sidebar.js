@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: 240,
     [theme.breakpoints.up('lg')]: {
-      marginTop: 105,
-      height: 'calc(100% - 105px)'
+      marginTop: 75,
+      height: `calc(100% - 75px)`
     }
   },
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     height: 'calc(100% - 249px)',
     padding: theme.spacing(2),
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(3)
   },
   divider: {
     margin: theme.spacing(2, 0)
