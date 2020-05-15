@@ -80,9 +80,7 @@ const ApiCardList = (props) => {
               md={6}
               xs={12}
             >
-              <Link onClick={() => navigate(api.id)}>
-                <ApiCard api={api}/>
-              </Link>
+              <ApiCard navigate={navigate} api={api}/>
             </Grid>
           ))}
         </Grid>

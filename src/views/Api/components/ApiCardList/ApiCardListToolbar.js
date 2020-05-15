@@ -9,8 +9,9 @@ import Select from '@material-ui/core/Select';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { makeStyles } from '@material-ui/styles';
 import { SearchInput } from 'components';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
+import { useDebounce } from 'common/utils';
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,9 +64,9 @@ const pricingData = [
 ];
 
 const frequencyData = [
-    "일중(실시간/Realtime)",
-    "일별(Intraday)",
-    "히스토리(End Of Day, Historical)"
+  "일중실시간",
+  "일별",
+  "히스토리"
 ];
 
 const publisherData = [
@@ -79,6 +80,15 @@ const publisherData = [
 const ApiCardListToolbar = (props) => {
 
   const {filter, setFilter, ...rest} = props;
+  const [keywordVal, setKeywordVal] = useState(filter.keyword);
+
+  const debounceKeyword = useDebounce(keywordVal, 100);
+
+  useEffect(() => {
+    if(debounceKeyword){
+      handleFilterChange("keyword",debounceKeyword)
+    }
+  },[debounceKeyword])
 
   const classes = useStyles();
 
@@ -86,8 +96,12 @@ const ApiCardListToolbar = (props) => {
     setFilter({
       ...filter,
       [name]:value
-    })
+    });
   };
+
+  const handleSearchChange = (name, value) => {
+    setKeywordVal(value);
+  }
 
   const toggleAdvanceFilter = () => {
     setFilter({
@@ -109,8 +123,8 @@ const ApiCardListToolbar = (props) => {
           <SearchInput
             className={classes.searchInput}
             placeholder="Search API"
-            onKeywordChange={(value) => handleFilterChange("keyword",value)}
-            keyword={filter.keyword}
+            onKeywordChange={(value) => handleSearchChange("keyword",value)}
+            keyword={keywordVal}
           />
           <div className={classes.spacer}></div>
           <Typography variant="subtitle2">{filter.sortAsc?"이름순":"이름역순"}</Typography>

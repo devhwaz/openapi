@@ -1,19 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { Card, CardActionArea, CardActions, CardContent, CardHeader, Chip, Divider, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-  Grid,
-  Divider,
-  CardHeader,
-  Chip
-} from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -34,20 +23,20 @@ const useStyles = makeStyles(theme => ({
   },
   chip1: {
     color:"white",
-    backgroundColor: theme.palette.success.main
+    backgroundColor: theme.palette.success.light
   },
   chip2: {
     color:"white",
-    backgroundColor: theme.palette.info.main
+    backgroundColor: theme.palette.info.light
   },
   chip3: {
     color:"white",
-    backgroundColor: theme.palette.warning.main
+    backgroundColor: theme.palette.warning.light
   }
 }));
 
 const ApiCard = props => {
-  const { className, api, ...rest } = props;
+  const { className, api, navigate, ...rest } = props;
   const classes = useStyles();
 
   return (
@@ -55,9 +44,10 @@ const ApiCard = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
+      <CardActionArea onClick={() => navigate(api.id)}>
       <CardHeader
         className={classes.cardHeader}
-        avatar={<img src="/images/logos/koscom_arrow.png" />}
+        avatar={<img src="/images/logos/koscom_arrow.png" width="11px"/>}
         title={api.title}
         titleTypographyProps={{variant:"h4"}}
       />
@@ -69,12 +59,14 @@ const ApiCard = props => {
           {api.description}
         </Typography>
       </CardContent>
+      
       <Divider />
       <CardActions>
         <Chip className={classes.chip1} label={api.tags[0]} />
         <Chip className={classes.chip2} label={api.tags[1]} />
         <Chip className={classes.chip3} label={api.tags[2]} />
       </CardActions>
+      </CardActionArea>
     </Card>
   );
 };

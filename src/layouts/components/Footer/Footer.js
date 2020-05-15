@@ -6,6 +6,7 @@ import { Typography, Link, Grid, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    ...theme.container,
     position:"relative",
     zIndex:theme.zIndex.appBar,
     padding:theme.spacing(4,0),
@@ -43,7 +44,6 @@ const Footer = props => {
     <div
       {...rest}
       className={clsx(classes.root, className)}
-      style={{marginLeft: sidebar && isDesktop ? 240: 0}}
     >
       <Grid container className={classes.contents}>
         <Grid item xs={6}>

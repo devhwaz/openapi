@@ -8,12 +8,7 @@ import {useDebounce} from 'common/utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    [theme.breakpoints.up('lg')]:{
-      marginLeft:240
-    },
-    [theme.breakpoints.down('md')]:{
-      padding:theme.spacing(3)
-    }
+    ...theme.container
   }
 }));
 
@@ -29,9 +24,9 @@ const pricingData = [
 ];
 
 const frequencyData = [
-    "일중(실시간/Realtime)",
-    "일별(Intraday)",
-    "히스토리(End Of Day, Historical)"
+    "일중실시간",
+    "일별",
+    "히스토리"
 ];
 
 const publisherData = [

@@ -13,6 +13,11 @@ import palette from 'theme/palette';
 import Highlight from 'react-highlight';
 import clsx from 'clsx';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { urlReplacer, flattenData } from 'common/utils';
+import MaterialTable from 'material-table';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import { useTheme } from '@material-ui/styles';
+import { Toolbar } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,30 +27,36 @@ const useStyles = makeStyles(theme => ({
       }
     },
     title: {
-      marginBottom: theme.spacing(4)
+      marginBottom: theme.spacing(1)
     },
     section: {
-      marginTop: theme.spacing(4),
-      marginBottom: theme.spacing(4)
+      marginBottom: theme.spacing(3)
     },
     divider: {
         height:3,
         backgroundColor:palette.koscomLight
     },
     table: {
-      
+      boxShadow: theme.shadows[1]
     },
     code: {
-      borderRadius:10
+      fontFamily:"roboto",
+      borderRadius:10,
+      whiteSpace: "break-spaces",
+      overflowWrap: "anywhere"
     },
     chip: {
       backgroundColor:theme.palette.customblue
+    },
+    leftpad: {
+      paddingLeft: theme.spacing(2)
     }
   }));
 
 export default function ApiDetail(props) {
   const {data, navigate, ...rest} = props
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <div className={classes.root}>
@@ -53,85 +64,168 @@ export default function ApiDetail(props) {
         <IconButton onClick={() => navigate(-1)}>
           <ArrowBackIcon />
         </IconButton>
-        <Typography variant="h3" gutterBottom component="span">{data.title}</Typography>
+        <Typography variant="h2" gutterBottom component="span">({data.category}) {data.title}</Typography>
         <Divider className={classes.divider} />
       </div>
       <div className={classes.section}>
-        <Typography variant="h4" gutterBottom>■ 기본정보</Typography>
+        <Toolbar><Typography variant="h4">■ 기본정보</Typography></Toolbar>
+        
         <div style={{display:"flex", alignItems:"center"}}>
         <Chip className={classes.chip} label={data.request.method}/>
         &nbsp;
         <Typography variant="h5">{data.request.urlFormat} </Typography>
         </div>
         <br/>
-        <Typography variant="subtitle2" gutterBottom>{data.description}</Typography>
+        <Typography variant="h5" gutterBottom>{data.description}</Typography>
       </div>
       <div className={classes.section}>
-        <Typography variant="h4" gutterBottom>■ URL Path 요청인자</Typography>
-        <TableContainer component={Paper}>
-          <Table size="small" className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">키</TableCell>
-                <TableCell align="center">명칭</TableCell>
-                <TableCell align="center">타입</TableCell>
-                <TableCell align="center">설명</TableCell>
-                <TableCell align="center">옵션</TableCell>
-                <TableCell align="center">필수</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.request.parameters.path.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell align="left">{row.name}</TableCell>
-                  <TableCell align="left">{row.title}</TableCell>
-                  <TableCell align="center">{row.type}</TableCell>
-                  <TableCell align="left">{row.description}</TableCell>
-                  <TableCell align="left">{row.remarks.join(', ')}</TableCell>
-                  <TableCell align="center">{row.required? "O" : "X"}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <MaterialTable
+          components={{
+            Container: props => <Paper {...props} elevation={0}/>
+          }}
+          title={<Typography variant="h4">■ 요청헤더</Typography>}
+          data={data.request.headers}
+          columns={[
+            { title: '키', field: 'name' },
+            { title: '명칭', field: 'title' },
+            { title: '설명', field: 'description'},
+            { title: '필수', field: 'required', render: rowData => rowData.required? "O" : "X"},
+            { title: '기본값', field: 'default'},
+            { title: '옵션', field: 'remarks', render:rowData => rowData.remarks.map((d,index) => <li key={index}>{d}</li>)}
+          ]}
+          options={{
+            paging: false,
+            padding: "dense",
+            defaultExpanded :true
+          }}
+        />
       </div>
       <div className={classes.section}>
-        <Typography variant="h4" gutterBottom>■ 응답결과</Typography>
-        <TableContainer component={Paper}>
-          <Table size="small" className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">키</TableCell>
-                <TableCell align="center">명칭</TableCell>
-                <TableCell align="center">타입</TableCell>
-                <TableCell align="center">설명</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.response["200"].schema.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell align="left">{row.name}</TableCell>
-                  <TableCell align="left">{row.title}</TableCell>
-                  <TableCell align="center">{row.type}</TableCell>
-                  <TableCell align="left">{row.description}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <MaterialTable
+          components={{
+            Container: props => <Paper {...props} elevation={0}/>
+          }}
+          title={<Typography variant="h4">■ URL Path 요청인자</Typography>}
+          data={data.request.parameters.path}
+          columns={[
+            { title: '키', field: 'name' },
+            { title: '명칭', field: 'title' },
+            { title: '타입', field: 'type' },
+            { title: '설명', field: 'description'},
+            { title: '옵션', field: 'remarks', render:rowData => rowData.remarks.map((d,index) => <li key={index}>{d}</li>)}
+          ]}
+          options={{
+            paging: false,
+            padding: "dense",
+            defaultExpanded :true
+          }}
+        />
       </div>
       <div className={classes.section}>
-        <Typography variant="h4" gutterBottom>■ 요청샘플</Typography>
+        <MaterialTable
+          components={{
+            Container: props => <Paper {...props} elevation={0}/>
+          }}
+          title={<Typography variant="h4">■ URL Query 요청인자</Typography>}
+          data={data.request.parameters.query}
+          columns={[
+            { title: '키', field: 'name' },
+            { title: '명칭', field: 'title' },
+            { title: '타입', field: 'type' },
+            { title: '설명', field: 'description'},
+            { title: '필수', field: 'required', render: rowData => rowData.required? "O" : "X"},
+            { title: '기본값', field: 'default'},
+            { title: '옵션', field: 'remarks', render:rowData => rowData.remarks.map((d,index) => <li key={index}>{d}</li>)}
+          ]}
+          options={{
+            paging: false,
+            padding: "dense",
+            defaultExpanded :true
+          }}
+        />
+      </div>
+      <div className={classes.section}>
+        <MaterialTable
+          components={{
+            Container: props => <Paper {...props} elevation={0}/>
+          }}
+          title={<Typography variant="h4">■ Body 요청인자</Typography>}
+          data={flattenData(data.request.parameters.body, "attributes")}
+          columns={[
+            { title: '키', field: 'name' },
+            { title: '명칭', field: 'title' },
+            { title: '타입', field: 'type' },
+            { title: '설명', field: 'description'},
+            { title: '필수', field: 'required', render: rowData => rowData.required? "O" : "X"},
+            { title: '기본값', field: 'default'},
+            { title: '옵션', field: 'remarks', render:rowData => rowData.remarks.map((d,index) => <li key={index}>{d}</li>)}
+          ]}
+          options={{
+            paging: false,
+            padding: "dense",
+            defaultExpanded :true
+          }}
+        />
+      </div>
+      <div className={classes.section}>
+        <Toolbar><Typography variant="h4">■ 요청샘플</Typography></Toolbar>
         <Highlight className={clsx('bash', classes.code)}>
-          {JSON.stringify(data.request.sample, null, '  ')}
+          <p>curl \</p>
+          <p className={classes.leftpad}>-i \</p>
+          {
+            Object.keys(data.request.sample.headers).map((k,index) => 
+              <p key={index} className={classes.leftpad}>-H "{k}:{data.request.sample.headers[k]}" \</p>
+            )
+          }
+          <p className={classes.leftpad}>-X {data.request.method}</p>
+          {data.request.method !== "GET" && Object.keys(data.request.sample.parameters.body).length > 0 &&
+            <p className={classes.leftpad}>-d '{JSON.stringify(data.request.sample.parameters.body, null, '')}' \</p>
+          }
+          <p className={classes.leftpad}>
+            {data.request.sample.baseUrl}
+            {encodeURI(urlReplacer(data.request.urlFormat, data.request.sample.parameters.path, data.request.sample.parameters.query))}
+          </p>
         </Highlight>
       </div>
-      <div className={classes.section}>
-        <Typography variant="h4" gutterBottom>■ 응답샘플</Typography>
-        <Highlight className={clsx('json', classes.code)}>
-          {JSON.stringify(data.response, null, '  ' )}
-        </Highlight>
-      </div>
+        {Object.keys(data.response).map( (rescode, index) => 
+          <div className={classes.section} key={index}>
+            <Toolbar>
+              <Typography variant="h4" gutterBottom>■ 응답코드({rescode})</Typography>
+            </Toolbar>
+            <Typography variant="h5">{data.response[rescode].description}</Typography>
+              <div>
+                {rescode == "200" &&
+                  <div>
+                    <MaterialTable
+                      components={{
+                        Container: props => <Paper {...props} elevation={0}/>
+                      }}
+                      title=""
+                      data={flattenData(data.response[rescode].schema, "attributes")}
+                      columns={[
+                        { title: '키', field: 'name' },
+                        { title: '명칭', field: 'title' },
+                        { title: '타입', field: 'type' },
+                        { title: '설명', field: 'description'},
+                        { title: '옵션', field: 'remarks', render:rowData => rowData.remarks.map((d,index) => <li key={index}>{d}</li>)}
+                      ]}
+                      parentChildData={(row, rows) => rows.find(r => r.id === row.parent)}
+                      options={{
+                        paging: false,
+                        padding: "dense",
+                        defaultExpanded :true
+                      }}
+                      onTreeExpandChange={(data) => console.log(data)}
+                    />
+                    <br/>
+                    <Highlight className={clsx('json', classes.code)}>
+                      {JSON.stringify(data.response[rescode].sample, null, '  ' )}
+                    </Highlight>
+                  </div>
+                }
+              </div>
+          </div>
+        )}
     </div>
   );
 }

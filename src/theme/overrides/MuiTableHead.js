@@ -1,6 +1,7 @@
+import palette from '../palette';
 
 export default {
   root: {
-    backgroundColor: "#EEE"
+    
   }
 };

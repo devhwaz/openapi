@@ -34,16 +34,19 @@ const useStyles = makeStyles(theme => ({
     right:theme.spacing(3),
     zIndex:100000
 
+  },
+  leftAnchor:{
+    left:'calc((100% - 1600px)/2 - 10px)'
   }
 }));
 
 const Sidebar = props => {
-  const { open, variant, onClose, className, children, ...rest } = props;
+  const { onClose, className, children, ...rest } = props;
 
   const classes = useStyles();
   const theme = useTheme();
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+  const isDesktop = useMediaQuery('(min-width:1600px)', {
     defaultMatches: true
   });
 
@@ -63,7 +66,7 @@ const Sidebar = props => {
     <React.Fragment>
       <Drawer
         anchor="left"
-        classes={{ paper: classes.drawer }}
+        classes={{ paper: classes.drawer, paperAnchorLeft:classes.leftAnchor }}
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
@@ -90,9 +93,7 @@ const Sidebar = props => {
 
 Sidebar.propTypes = {
   className: PropTypes.string,
-  onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired,
-  variant: PropTypes.string.isRequired
+  onClose: PropTypes.func
 };
 
 export default Sidebar;
