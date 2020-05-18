@@ -1,11 +1,10 @@
-import { Avatar, Grid, Typography, Divider } from '@material-ui/core';
+import { Avatar, Divider, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import { AvatarGroup } from '@material-ui/lab';
 import React, { useEffect, useState } from "react";
-import BlogDetailMarkdown from './BlogDetailMarkdown';
+import BlogDetailHtml from './BlogDetailHtml';
 import FeaturedPost from './FeaturedPost';
 import posts from "./sample";
-import BlogDetailHtml from './BlogDetailHtml';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   recommendGrid: {
-    marginTop:theme.spacing(6),
+    marginTop:theme.spacing(2),
     [theme.breakpoints.up("lg")]: {
       
     }
@@ -36,7 +35,7 @@ export default function BlogDetail(props) {
 
   useEffect(() => {
     // id 값으로 Blog 컨텐츠 fetch 및 Blog 목록조회 필요
-    setPost(posts[0]);
+    setPost(posts[id-1]);
     setFeaturedPosts(posts);
   }, [])
 
@@ -65,14 +64,15 @@ export default function BlogDetail(props) {
         <Grid item xs={12}>
           <BlogDetailHtml source={post.source}/>
         </Grid>
+        {/* TODO: Markdown Fetch 후 결과 데이터 필요 
         <Grid item xs={12}>
-          <BlogDetailMarkdown source={""/* TODO: Markdown Fetch 후 결과 데이터 필요 */}/>
-        </Grid>
+          <BlogDetailMarkdown source={""}/>
+        </Grid> */}
       </Grid>
-      <Grid container spacing={5} className={classes.recommendGrid}>
-        <Grid item xs={12}><Typography variant="h3" align="center">Featured Blogs</Typography></Grid>
+      <Divider />
+      <Grid container spacing={4} className={classes.recommendGrid}>
         {featuredPosts.slice(0,3).map((post) => (
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} align="center">
             <FeaturedPost key={post.title} post={post} />
           </Grid>
         ))}

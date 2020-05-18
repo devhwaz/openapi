@@ -1,1 +1,1 @@
-export { default as BannerGrid } from './BannerGrid';
+export { default } from './BannerGrid';

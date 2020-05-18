@@ -4,20 +4,24 @@ const white = '#FFFFFF';
 const black = '#000000';
 const koscomDark = '#AB3D0B';
 const koscomMain = '#F36F32';
-const koscomLight = '#FFCCA9';
+const koscomLight = 'rgba(255,204,169,0.6)';
+const koscomText = '#58585a';
 
 export default {
   black,
   white,
-  koscomDark,
-  koscomMain,
-  koscomLight,
+  koscom: {
+    text:koscomText,
+    dark:koscomDark,
+    main:koscomMain,
+    light:koscomLight
+  },
   customblue: colors.blue[100],
   primary: {
     contrastText: white,
-    dark: colors.indigo[900],
-    main: colors.indigo[500],
-    light: colors.indigo[100]
+    dark: colors.grey[900],
+    main: colors.grey[600],
+    light: colors.grey[100]
   },
   secondary: {
     contrastText: white,

@@ -7,47 +7,36 @@ const authors = [
 const posts = [
   {
     id: 1,
-    title: 'HTML 파일에 기반한 블로그 샘플',
-    date: 'April 27',
+    title: 'API를 활용한 한국 주식시장의 자본자산가격 모형',
+    date: 'April 30',
     description:
-      'HTML페이지로 제작된 블로그 파일을 로드합니다.',
-    image: '/images/banners/html.jpg',
+      '자본자산가격모형(CAPM: Capital Asset Pricing Model)이란 자산, 즉 주식의 초과수익률이 기본적으로 시장 초과수익률에 비례하게 된다는 모형이다. 이 글에서는 한국 주식시장에서 자본자산가격모형이 실제로 성립하는지와 자본자산가격모형에 따른 주식 선택의 예를 살펴본다.',
+    image: '/blogs/kospi_capm/thumbnail.png',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/stock/stock.html'
+    source: '/blogs/kospi_capm/kospi_capm.html'
   },
   {
     id:2,
-    title: 'Markdown 파일에 기반한 블로그 샘플',
-    date: 'April 29',
+    title: '성공적인 서비스를 위한 최적의 데이터스토어 선택',
+    date: 'May 4',
     description:
-      'Markdown 파일로 제작된 블로그 파일을 로드합니다.',
-    image: '/images/banners/markdown.png',
+      '무작정 쌓는다고 데이터가 아니다. 잘 다듬고 정리해야 데이터로서의 가치가생기기 마련이다.',
+    image: '/blogs/stock/thumbnail.png',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/수정요함.md'
+    source: '/blogs/stock/stock.html'
   },
   {
     id:3,
-    title: '기타 블로그 샘플',
-    date: 'April 30',
+    title: '주식 Tick 정보를 활용한 패턴 분석 사례 파일에 기반한 블로그 샘플',
+    date: 'May 8',
     description:
-      '기타 형태의 블로그',
-    image: '/images/banners/bigdata.jpg',
+      '최적 집행 알고리즘의 의미를 해석해 보고, 삼성전자 주식에 적용해 보기로 한다.',
+    image: '/blogs/seaborn/thumbnail.png',
     imageText: 'Image Text',
     authors: authors,
-    source: '/notebook_files/수정요함.md'
-  },
-  {
-    id:4,
-    title: '기타 블로그 샘플',
-    date: 'April 30',
-    description:
-      '기타 형태의 블로그',
-    image: '/images/banners/bigdata.jpg',
-    imageText: 'Image Text',
-    authors: authors,
-    source: '/notebook_files/수정요함.md'
+    source: '/blogs/seaborn/seaborn.html'
   }
 ];
 

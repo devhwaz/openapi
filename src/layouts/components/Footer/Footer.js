@@ -2,35 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
-import { Typography, Link, Grid, Divider, useMediaQuery } from '@material-ui/core';
+import { Typography, Link, Grid, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(0),
-    backgroundColor:"#f4f6f8",
+    ...theme.container,
     position:"relative",
-    zIndex:theme.zIndex.appBar
+    zIndex:theme.zIndex.appBar,
+    padding:theme.spacing(4,0),
+    borderTop:`5px solid ${theme.palette.divider}`
   },
+  contents: theme.container
+  ,
   logoContainer: {
-    paddingLeft: 3,
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: 150
-    }
+    
   },
   logo: {
-    padding:"20px 0px"
+    paddingBottom:theme.spacing(2)
   },
   item: {
     paddingBottom:"5px",
     display:"block"
   },
   itemRight: {
-    paddingTop:"20px",
-    display:"block",
-    paddingRight:3,
-    [theme.breakpoints.up('md')]: {
-      paddingRight: 150
-    }
+    
+    display:"block"
   }
 }));
 
@@ -48,12 +44,8 @@ const Footer = props => {
     <div
       {...rest}
       className={clsx(classes.root, className)}
-      style={{marginLeft: sidebar && isDesktop ? 240: 0}}
     >
-      <Grid container>
-        <Grid item xs={12}>
-          <Divider style={{height:5}}/>
-        </Grid>
+      <Grid container className={classes.contents}>
         <Grid item xs={6}>
           <div className={classes.logoContainer}>
           <Link

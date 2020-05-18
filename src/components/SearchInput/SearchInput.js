@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import { Paper, Input } from '@material-ui/core';
+import { Input, Paper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from '@material-ui/styles';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchInput = props => {
-  const { className, onChange, style, ...rest } = props;
+  const { className, keyword, onKeywordChange, style, ...rest } = props;
+
 
   const classes = useStyles();
 
@@ -41,7 +42,8 @@ const SearchInput = props => {
         {...rest}
         className={classes.input}
         disableUnderline
-        onChange={onChange}
+        onChange={(event) => onKeywordChange(event.target.value)}
+        value={keyword}
       />
     </Paper>
   );

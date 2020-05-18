@@ -3,14 +3,16 @@ import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import { Menubar } from 'layouts/components';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: "white",
-    paddingTop:10
+    backgroundColor: "transparent",
+    paddingTop:10,
+    transition: "background-color 300ms ease 0s"
   },
+  content: theme.container,
   flexGrow: {
     flexGrow: 1
   },
@@ -18,36 +20,75 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1)
   },
   toolbar: {
+    ...theme.container,
     height:65,
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: 50
+    [theme.breakpoints.down("sm")]:{
+      display:"block",
+      height:85
     }
+  },
+  changeColorOnScroll :{
+    backgroundColor: "white",
+    boxShadow: theme.shadows[4]
   }
 }));
 
 const Topbar = props => {
-  const { className, currentLocation, ...rest } = props;
+  const { className, currentLocation, fixedTopbar, ...rest } = props;
 
   const classes = useStyles();
+  
+  const [transparent, setTransparent] = useState(true)
 
-  const [notifications] = useState([]);
+  useEffect(() => {
+    if(fixedTopbar){
+      document.body
+        .getElementsByTagName("header")[0]
+        .classList.add(classes.changeColorOnScroll);
+        setTransparent(false);
+    } else {
+      window.addEventListener("scroll", headerColorChange);
+      return function cleanup() {
+          window.removeEventListener("scroll", headerColorChange);
+      };
+    }
+  });
+
+  const changeTopbarColorScrollHeight = 100;
+
+  const headerColorChange = () => {
+    const windowsScrollTop = window.pageYOffset;
+    if (windowsScrollTop > changeTopbarColorScrollHeight) {
+      document.body
+        .getElementsByTagName("header")[0]
+        .classList.add(classes.changeColorOnScroll);
+        setTransparent(false);
+    } else {
+      document.body
+        .getElementsByTagName("header")[0]
+        .classList.remove(classes.changeColorOnScroll);
+        setTransparent(true);
+    }
+  };
 
   return (
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
+      elevation={0}
     >
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
           <img
             alt="Logo"
-            src="/images/logos/kapi_bi.jpg"
+            src={transparent?"/images/logos/koscomci_light.png":"/images/logos/koscomci_dark.png"}
             width="150px"
           />
         </RouterLink>
         <div className={classes.flexGrow} />
+        <Menubar currentLocation={currentLocation} transparent={transparent}/>
       </Toolbar>
-      <Menubar currentLocation={currentLocation}/>
+      
     </AppBar>
   );
 };

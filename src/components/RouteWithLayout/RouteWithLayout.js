@@ -3,13 +3,13 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RouteWithLayout = props => {
-  const { layout: Layout, component: Component, sidebar, ...rest } = props;
+  const { layout: Layout, component: Component, sidebar, fixedTopbar, ...rest } = props;
 
   return (
     <Route
       {...rest}
       render={matchProps => (
-        <Layout sidebar={sidebar}>
+        <Layout sidebar={sidebar} fixedTopbar={fixedTopbar}>
           <Component {...matchProps} />
         </Layout>
       )}

@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    height:300
+  },
   mainFeaturedPost: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
@@ -16,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    height:300
   },
   overlay: {
     position: 'absolute',
@@ -40,9 +43,8 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+    <Card elevation={0} className={classes.root}>
+      <CardActionArea  className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }} href={"/blog/"+post.id}>
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>
@@ -53,13 +55,14 @@ export default function MainFeaturedPost(props) {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href={"/blog/"+post.id}>
+            {/* <Link variant="subtitle1" href={"/blog/"+post.id}>
               → 읽어보기
-            </Link>
+            </Link> */}
           </div>
         </Grid>
       </Grid>
-    </Paper>
+      </CardActionArea>
+    </Card>
   );
 }
 

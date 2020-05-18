@@ -1,17 +1,14 @@
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { Grid, Typography, List, ListItem, ListItemText, ListItemIcon, Paper } from "@material-ui/core";
-import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4),
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4,50)
-    }
+    ...theme.container,
+    margin:theme.spacing(4,0)
   },
   quote: {
-    margin:"70px 0px",
+    margin:theme.spacing(8,0),
     paddingLeft:30,
     borderLeft:"10px solid "+theme.palette.divider
   }
@@ -27,7 +24,7 @@ export default function About(props) {
       <Grid container justify="center">
         <Grid item xs={12} align="center">
           <Typography variant="h2">코스콤 API 서비스 소개</Typography>
-          <Typography variant="h4" align="left" className={classes.quote} style={{margin:"70px 0px"}}>코스콤 API는 자본시장의 모든 데이터를 자유롭게 유통하여 
+          <Typography variant="h4" align="left" className={classes.quote}>코스콤 API는 자본시장의 모든 데이터를 자유롭게 유통하여 
                   <br/>자본시장의 발전에 기여하기 위한 종합 데이터 유통 마켓플레이스 입니다.
                   <br/>
                   <br/>국내 유일의 글로벌 자본시장 특화 투자 및 분석 데이터 제공 마켓플레이스 입니다.
@@ -42,14 +39,14 @@ export default function About(props) {
                   <br/>
                   <br/>많은 이용 바랍니다.</Typography>
         </Grid>
-        <Grid item xs={12} md={3}>
+        {/* <Grid item xs={12} md={3}>
           <Typography variant="h3" style={{display:"flex"}}><EmailIcon />&nbsp;제휴문의</Typography>
           <Typography variant="subtitle1" gutterBottom>open@koscom.co.kr</Typography>
         </Grid>
         <Grid item xs={12} md={3}>
           <Typography variant="h3" style={{display:"flex"}}><EmailIcon />&nbsp;신규 데이터 요청</Typography>
           <Typography variant="subtitle1">developers@koscom.co.kr</Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

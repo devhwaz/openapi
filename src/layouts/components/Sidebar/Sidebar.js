@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: 240,
     [theme.breakpoints.up('lg')]: {
-      marginTop: 105,
-      height: 'calc(100% - 105px)'
+      marginTop: 75,
+      height: `calc(100% - 75px)`
     }
   },
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     height: 'calc(100% - 249px)',
     padding: theme.spacing(2),
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(3)
   },
   divider: {
     margin: theme.spacing(2, 0)
@@ -30,20 +30,23 @@ const useStyles = makeStyles(theme => ({
   },
   menu: {
     position:"fixed",
-    top:20,
-    right:30,
+    top:theme.spacing(1),
+    right:theme.spacing(3),
     zIndex:100000
 
+  },
+  leftAnchor:{
+    left:'calc((100% - 1600px)/2 - 10px)'
   }
 }));
 
 const Sidebar = props => {
-  const { open, variant, onClose, className, children, ...rest } = props;
+  const { onClose, className, children, ...rest } = props;
 
   const classes = useStyles();
   const theme = useTheme();
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+  const isDesktop = useMediaQuery('(min-width:1600px)', {
     defaultMatches: true
   });
 
@@ -63,7 +66,7 @@ const Sidebar = props => {
     <React.Fragment>
       <Drawer
         anchor="left"
-        classes={{ paper: classes.drawer }}
+        classes={{ paper: classes.drawer, paperAnchorLeft:classes.leftAnchor }}
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
@@ -90,9 +93,7 @@ const Sidebar = props => {
 
 Sidebar.propTypes = {
   className: PropTypes.string,
-  onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired,
-  variant: PropTypes.string.isRequired
+  onClose: PropTypes.func
 };
 
 export default Sidebar;

@@ -1,15 +1,13 @@
+import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-import { Grid, Typography, List, ListItem, ListItemText, ListItemIcon, Paper } from "@material-ui/core";
-import ReactPlayer from 'react-player';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
+import React from "react";
+import ReactPlayer from 'react-player';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4),
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4,50)
-    }
+    ...theme.container,
+    margin:theme.spacing(4,0)
   },
   listIcon: {
     color:theme.palette.koscomMain
@@ -65,7 +63,7 @@ export default function Analytics(props) {
           </List>
         </Grid>
         <Grid item xs={12} md={6}>
-            <ReactPlayer url='/videos/analytics_mp.mp4' playing width="100%" loop={true}/>
+            <ReactPlayer url='/videos/analytics_mp.mp4' playing width="100%" loop={true} controls={true} />
         </Grid>
       </Grid>
     </div>

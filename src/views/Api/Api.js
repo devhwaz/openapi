@@ -1,60 +1,138 @@
-import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { Sidebar } from 'layouts/components';
-import React, { useState } from 'react';
-import { Budget, LatestOrders, LatestProducts, LatestSales, TasksProgress, TotalProfit, TotalUsers, UsersByDevice } from '../Dashboard/components';
-import { SidebarNavigation, ApiDetail, ApiCardList } from './components';
-import data from './sample';
+import React, { useState, useEffect } from 'react';
+import { ApiCardList, ApiDetail, SidebarNavigation } from './components';
+import _ from 'lodash';
+import data from './data/data.json';
+import {useDebounce} from 'common/utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    [theme.breakpoints.up('lg')]:{
-      marginLeft:240
-    },
-    [theme.breakpoints.down('md')]:{
-      padding:theme.spacing(3)
-    }
+    ...theme.container
   }
 }));
+
+const findApiDataById = (id) => {
+  return data.find((e) => e.id == id)
+}
+
+// FIXME: random tags!!
+const pricingData = [
+  "무료",
+  "부분유료",
+  "유료"
+];
+
+const frequencyData = [
+    "일중실시간",
+    "일별",
+    "히스토리"
+];
+
+const publisherData = [
+  "코스콤",
+  "BC카드",
+  "위버플",
+  "NICE",
+  "기타"
+];
+
+const dataWithRandomTags = _.sortBy(data.map(row => 
+  ({
+    ...row,
+    tags:[_.sample(pricingData), _.sample(frequencyData), _.sample(publisherData)]
+  })
+), [(o) => {return o.title}]);
+
+const dataWithRandomTagsReversed = dataWithRandomTags.slice().reverse();
 
 const Api = () => {
   const classes = useStyles();
 
-  const [cardData, setCardData] = useState({});
-  const [viewApiCard, setViewApiCard] = useState(false);
+  const [originalData, setOriginalData] = useState(dataWithRandomTags);
+  const [apiListData, setApiListData] = useState(dataWithRandomTags);
+  const [apiDetailData, setApiDetailData] = useState({});
   const [viewApiDetail, setViewApiDetail] = useState(false);
 
-  var idx = 0;
-  const navCallback = (id) => {
-    if (id!=-1) {
-      setCardData(data[id]);
+  // Save filter condition whenever coming back to this page from the others.
+  const [filter, setFilter] = useState({
+    showAdvance:false,
+    keyword:"",
+    sortAsc:true,
+    pricing:[],
+    frequency:[],
+    publisher:[],
+    category:""
+  });
+
+  const debouncedSearchTerm = useDebounce(filter.keyword, 500);
+
+  const filterKeyword = (keyword, item) => {
+    if(keyword){
+      return item.includes(filter.keyword);
+    } else {
+      return true;
+    }
+  };
+
+  const filterTags = (tags, item) => {
+    if(tags.length !== 0) {
+      return _.intersection(tags,item).length > 0
+    } else {
+      return true;
+    }
+  }
+
+  const setFilteredData = (data) => {
+    setApiListData(data
+    .filter(o => 
+      (filterKeyword(filter.keyword, o.title) || filterKeyword(filter.keyword, o.description)) &&
+      filterTags(filter.pricing, o.tags) &&
+      filterTags(filter.frequency, o.tags) &&
+      filterTags(filter.publisher, o.tags)
+    ));
+  };
+
+  useEffect(() => {
+    if(filter.sortAsc) {
+      setOriginalData(dataWithRandomTags);
+      setFilteredData(dataWithRandomTags);
+    } else {
+      setOriginalData(dataWithRandomTagsReversed);
+      setFilteredData(dataWithRandomTagsReversed);
+    }
+  }, [filter.sortAsc]);
+
+  useEffect(() => setFilteredData(originalData),
+    [debouncedSearchTerm, filter.pricing, filter.publisher, filter.frequency, filter.category]
+  );
+
+  const navigate = (id, category) => {
+    if (id!==-1) {
+      setApiDetailData(findApiDataById(id));
       setViewApiDetail(true);
     } else {
       setViewApiDetail(false);
+      if(category) {
+        setFilter({
+          ...filter,
+          category:category
+        });
+      }
     }
-    // if(id==1){
-    //   setViewApiDetail(true);
-    //   idx = 1;
-    //   //get detail data
-    //   // setApiDetailData(response.data);setViewDetail(true); << state
-    //   // axios.get('/v1/api/getApiDetail/${idx}').then( (response) => { setApiDetailData(response.data);setViewDetail(true) } )
-    // } else if(value == "view_card") {
-    //   // get card list data
-    //   // setApiListData << state
-    //   setViewApiDetail(false);
-    // }
-    
+    document.documentElement.scrollTop = 0;
   };
+
   return (
     <div className={classes.root}>
       <Sidebar>
-        <SidebarNavigation callback={navCallback} />
+        <SidebarNavigation navigate={navigate} />
       </Sidebar>
       { viewApiDetail &&
-        <ApiDetail data={cardData}/>
+        <ApiDetail navigate={navigate} data={apiDetailData}/>
       }
       { !viewApiDetail &&
-        <ApiCardList callback={navCallback}/>
+        <ApiCardList data={apiListData} navigate={navigate} filter={filter} setFilter={setFilter} />
       }
     </div>
   );

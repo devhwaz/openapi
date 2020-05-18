@@ -22,5 +22,34 @@ a {
   height: 100%;
 }
 
+.text-overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+}
+
+tr[level="1"] {
+  background-color: rgba(255,204,169,0.1)
+}
+
+tr[level="2"] {
+  background-color: rgba(255,204,169,0.2)
+}
+
+tr[level="3"] {
+  background-color: rgba(255,204,169,0.3)
+}
+
+tr[level="4"] {
+  background-color: rgba(255,204,169,0.4)
+}
+
+tr[level="5"] {
+  background-color: rgba(255,204,169,0.5)
+}
+
 @font-face { font-family: 'NanumGothic'; src: url(../font/NanumBarunGothic.ttf) format('truetype'); }
 @font-face { font-family: 'NanumMyeongjo'; src: url(../font/NanumMyeongjo.ttf) format('truetype'); }

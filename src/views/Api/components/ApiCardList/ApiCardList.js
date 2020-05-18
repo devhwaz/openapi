@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/styles';
-import { IconButton, Grid, Typography } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { Grid, IconButton, Typography } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
-import { ApiToolbar, ApiCard } from './components';
-import mockData from './apiCardData';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { makeStyles } from '@material-ui/styles';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ApiCard from './ApiCard';
+import ApiCardListToolbar from './ApiCardListToolbar';
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3)
+  },
+  toolbar:{
+    width:"100%",
+    marginBottom:theme.spacing(2)
+  },
+  toolbarPrimary: {
+    display:"flex",
+    alignItems:"center"
+  },
+  toolbarSecondary: {
+    marginTop:theme.spacing(2),
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"right"
+  },
+  spacer: {
+    flexGrow:1
+  },
+  searchInput: {
+    width:370,
+    [theme.breakpoints.down("sm")]:{
+      width:"100%"
+    }
   },
   content: {
     marginTop: theme.spacing(2)
@@ -25,45 +47,43 @@ const useStyles = makeStyles(theme => ({
 
 const ApiCardList = (props) => {
 
-  const {callback, ...rest} = props;
+  const {navigate, data, filter, setFilter, ...rest} = props;
 
   const classes = useStyles();
 
-  const [apis] = useState(mockData);
+  const onSearchKeywordChange = (keyword) => {
+    setFilter({
+      ...filter,
+      keyword:keyword
+    });
+  }
 
-
+  const toggleAdvanceFilter = () => {
+    setFilter({
+      ...filter,
+      showAdvance:!filter.showAdvance
+    });
+  }
 
   return (
     <div className={classes.root}>
-      <ApiToolbar />
+      <ApiCardListToolbar filter={filter} setFilter={setFilter}/>
       <div className={classes.content}>
         <Grid
           container
           spacing={3}
         >
-          {apis.map(api => (
+          {data.map(api => (
             <Grid
               item
               key={api.id}
-              lg={12}
-              md={12}
+              md={6}
               xs={12}
             >
-              <Link onClick={() => callback(api.id)}>
-                <ApiCard api={api}/>
-              </Link>
+              <ApiCard navigate={navigate} api={api}/>
             </Grid>
           ))}
         </Grid>
-      </div>
-      <div className={classes.pagination}>
-        <Typography variant="caption">1-6 of 20</Typography>
-        <IconButton>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton>
-          <ChevronRightIcon />
-        </IconButton>
       </div>
     </div>
   );
